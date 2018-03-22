@@ -2,14 +2,20 @@ inspecode:
 
   ktlint:
   - input:
-    - ktor-server/ktor-tests/
+    - ktor-server/ktor-server-benchmarks/
+    - ktor-server/ktor-server-cio/
+    - ktor-server/ktor-server-core/
+    - ktor-server/ktor-server-host-common/
     auto-fix: true
     thresholds:
       num-issues: 999
   - input:
     - ktor-server/
     ignore:
-    - ktor-server/ktor-tests/
+    - ktor-server/ktor-server-benchmarks/
+    - ktor-server/ktor-server-cio/
+    - ktor-server/ktor-server-core/
+    - ktor-server/ktor-server-host-common/
     auto-fix: true
     thresholds:
       num-issues: 999
