@@ -2,43 +2,35 @@ inspecode:
 
   ktlint:
   - input:
-      - ktor-server/ktor-server-core/
+    - ktor-server/ktor-tests/
     auto-fix: true
     thresholds:
       num-issues: 999
   - input:
-      - ktor-server/
+    - ktor-server/
     ignore:
-      - ktor-server/ktor-server-core/
+    - ktor-server/ktor-tests/
     auto-fix: true
     thresholds:
       num-issues: 999
   - input:
-      - ktor-sample/
+    - ktor-sample/
+    - ktor-features/
     auto-fix: true
     thresholds:
       num-issues: 999
   - input:
-      - ktor-features/
-    auto-fix: true
-    thresholds:
-      num-issues: 999
-  - input:
-      - ktor-http-cio/
-    auto-fix: true
-    thresholds:
-      num-issues: 999
-  - input:
-      - ktor-client/
+    - ktor-http-cio/
+    - ktor-client/
     auto-fix: true
     thresholds:
       num-issues: 999
   - ignore:
-      - ktor-server/
-      - ktor-sample/
-      - ktor-features/
-      - ktor-http-cio/
-      - ktor-client/
+    - ktor-server/
+    - ktor-sample/
+    - ktor-features/
+    - ktor-http-cio/
+    - ktor-client/
     auto-fix: true
     thresholds:
       num-issues: 999
