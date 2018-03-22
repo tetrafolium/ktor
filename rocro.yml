@@ -1,6 +1,31 @@
 inspecode:
 
   ktlint:
+  - input:
+      - ktor-server/
+    auto-fix: true
+    thresholds:
+      num-issues: 999
+  - input:
+      - ktor-sample/
+    auto-fix: true
+    thresholds:
+      num-issues: 999
+  - input:
+      - ktor-features/
+    auto-fix: true
+    thresholds:
+      num-issues: 999
+  - input:
+      - ktor-http-cio/
+    auto-fix: true
+    thresholds:
+      num-issues: 999
+  - ignore:
+      - ktor-server/
+      - ktor-sample/
+      - ktor-features/
+      - ktor-http-cio/
     auto-fix: true
     thresholds:
       num-issues: 999
