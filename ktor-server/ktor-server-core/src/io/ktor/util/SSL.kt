@@ -7,7 +7,6 @@ import java.security.*
 import java.time.*
 import java.util.*
 
-
 /**
  * Generates simple self-signed certificate with [keyAlias] name, private key is encrypted with [keyPassword],
  * and a JKS keystore to hold it in [file] with [jksPassword].

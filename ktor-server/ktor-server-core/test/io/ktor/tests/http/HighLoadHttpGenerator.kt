@@ -26,12 +26,23 @@ import kotlin.concurrent.*
  * RPS is much higher (up to 10x higher) in this mode
  * but load generator provides absolutely no diagnostics.
  */
-class HighLoadHttpGenerator(val host: String, port: Int,
-                            val numberOfConnections: Int, val queueSize: Int, val highPressure: Boolean,
-                            builder: RequestResponseBuilder.() -> Unit) {
+class HighLoadHttpGenerator(
+    val host: String,
+    port: Int,
+    val numberOfConnections: Int,
+    val queueSize: Int,
+    val highPressure: Boolean,
+    builder: RequestResponseBuilder.() -> Unit
+) {
 
-    constructor(url: String, host: String, port: Int,
-                numberConnections: Int, queueSize: Int, highPressure: Boolean)
+    constructor(
+        url: String,
+        host: String,
+        port: Int,
+        numberConnections: Int,
+        queueSize: Int,
+        highPressure: Boolean
+    )
             : this(host, port, numberConnections, queueSize, highPressure, {
         requestLine(HttpMethod.Get, url, "HTTP/1.1")
         headerLine(HttpHeaders.Host, "$host:$port")
@@ -484,7 +495,6 @@ class HighLoadHttpGenerator(val host: String, port: Int,
 
                             break
                         }
-
                     } catch (t: Throwable) {
 //                            println("read() failed: $t")
                         readErrors.incrementAndGet()

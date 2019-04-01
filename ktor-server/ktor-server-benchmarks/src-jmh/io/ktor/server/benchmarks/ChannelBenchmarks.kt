@@ -132,4 +132,3 @@ fun main(args: Array<String>) {
         run<ChannelBenchmarks>()
     }
 }
-

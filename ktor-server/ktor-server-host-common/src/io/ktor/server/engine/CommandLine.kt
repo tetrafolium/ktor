@@ -54,7 +54,6 @@ fun commandLineEnvironment(args: Array<String>): ApplicationEngineEnvironment {
                 .withValue("security", contentHiddenValue)
                 .render())
 
-
         val host = argsMap["-host"] ?: combinedConfig.tryGetString(hostConfigPath) ?: "0.0.0.0"
         val port = argsMap["-port"] ?: combinedConfig.tryGetString(hostPortPath) ?: "80"
         val sslPort = argsMap["-sslPort"] ?: combinedConfig.tryGetString(hostSslPortPath)

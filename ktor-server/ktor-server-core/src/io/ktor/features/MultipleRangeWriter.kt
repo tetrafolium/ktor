@@ -4,16 +4,15 @@ import io.ktor.http.*
 import kotlinx.coroutines.experimental.*
 import kotlinx.coroutines.experimental.io.*
 
-
 private val NEWLINE = "\r\n".toByteArray(Charsets.ISO_8859_1)
 private val FIXED_HEADERS_PART_LENGTH = 14 + HttpHeaders.ContentLength.length + HttpHeaders.ContentRange.length
 
 fun writeMultipleRanges(
-        channelProducer: (LongRange) -> ByteReadChannel,
-        ranges: List<LongRange>,
-        fullLength: Long?,
-        boundary: String,
-        contentType: String
+    channelProducer: (LongRange) -> ByteReadChannel,
+    ranges: List<LongRange>,
+    fullLength: Long?,
+    boundary: String,
+    contentType: String
 ): ByteReadChannel = writer(Unconfined, autoFlush = true) {
     for (range in ranges) {
         val current = channelProducer(range)
@@ -25,7 +24,6 @@ fun writeMultipleRanges(
     channel.writeFully("--$boundary--".toByteArray(Charsets.ISO_8859_1))
     channel.writeFully(NEWLINE)
 }.channel
-
 
 private suspend fun ByteWriteChannel.writeHeaders(range: LongRange, boundary: String, contentType: String, fullLength: Long?) {
     val contentRangeHeaderValue = contentRangeHeaderValue(range, fullLength, RangeUnits.Bytes)

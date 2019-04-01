@@ -13,36 +13,37 @@ import kotlinx.coroutines.experimental.io.*
  * Compression feature configuration
  */
 data class CompressionOptions(
-        /**
-         * Map of encoder configurations
-         */
-        val encoders: Map<String, CompressionEncoderConfig> = emptyMap(),
-        /**
-         * Conditions for all encoders
-         */
-        val conditions: List<ApplicationCall.(OutgoingContent) -> Boolean> = emptyList()
+    /**
+     * Map of encoder configurations
+     */
+    val encoders: Map<String, CompressionEncoderConfig> = emptyMap(),
+    /**
+     * Conditions for all encoders
+     */
+    val conditions: List<ApplicationCall.(OutgoingContent) -> Boolean> = emptyList()
 )
 
 /**
  * Configuration for an encoder
  */
 data class CompressionEncoderConfig(
-        /**
-         * Name of the encoder, matched against entry in `Accept-Encoding` header
-         */
-        val name: String,
-        /**
-         * Encoder implementation
-         */
-        val encoder: CompressionEncoder,
-        /**
-         * Conditions for the encoder
-         */
-        val conditions: List<ApplicationCall.(OutgoingContent) -> Boolean>,
-        /**
-         * Priority of the encoder
-         */
-        val priority: Double)
+    /**
+     * Name of the encoder, matched against entry in `Accept-Encoding` header
+     */
+    val name: String,
+    /**
+     * Encoder implementation
+     */
+    val encoder: CompressionEncoder,
+    /**
+     * Conditions for the encoder
+     */
+    val conditions: List<ApplicationCall.(OutgoingContent) -> Boolean>,
+    /**
+     * Priority of the encoder
+     */
+    val priority: Double
+)
 
 /**
  * Feature to compress a response based on conditions and ability of client to decompress it
@@ -72,11 +73,11 @@ class Compression(compression: Configuration) {
         if (!encoders.isNotEmpty())
             return
 
-        if (message is OutgoingContent
-                && message !is CompressedResponse
-                && options.conditions.all { it(call, message) }
-                && !call.isCompressionSuppressed()
-                && message.headers[HttpHeaders.ContentEncoding].let { it == null || it == "identity" }
+        if (message is OutgoingContent &&
+                message !is CompressedResponse &&
+                options.conditions.all { it(call, message) } &&
+                !call.isCompressionSuppressed() &&
+                message.headers[HttpHeaders.ContentEncoding].let { it == null || it == "identity" }
                 ) {
 
             val encoderOptions = encoders.firstOrNull { it.conditions.all { it(call, message) } }
@@ -99,14 +100,15 @@ class Compression(compression: Configuration) {
                 val response = CompressedResponse(message, channel, encoderOptions.name, encoderOptions.encoder)
                 context.proceedWith(response)
             }
-
         }
     }
 
-    private class CompressedResponse(val original: OutgoingContent,
-                                     val delegateChannel: () -> ByteReadChannel,
-                                     val encoding: String,
-                                     val encoder: CompressionEncoder) : OutgoingContent.ReadChannelContent() {
+    private class CompressedResponse(
+        val original: OutgoingContent,
+        val delegateChannel: () -> ByteReadChannel,
+        val encoding: String,
+        val encoder: CompressionEncoder
+    ) : OutgoingContent.ReadChannelContent() {
         override fun readFrom() = encoder.compress(delegateChannel())
         override val headers by lazy(LazyThreadSafetyMode.NONE) {
             Headers.build {
@@ -121,9 +123,11 @@ class Compression(compression: Configuration) {
         override fun <T : Any> setProperty(key: AttributeKey<T>, value: T?) = original.setProperty(key, value)
     }
 
-    private class CompressedWriteResponse(val original: WriteChannelContent,
-                                          val encoding: String,
-                                          val encoder: CompressionEncoder) : OutgoingContent.WriteChannelContent() {
+    private class CompressedWriteResponse(
+        val original: WriteChannelContent,
+        val encoding: String,
+        val encoder: CompressionEncoder
+    ) : OutgoingContent.WriteChannelContent() {
         override val headers by lazy(LazyThreadSafetyMode.NONE) {
             Headers.build {
                 appendFiltered(original.headers) { name, _ -> !name.equals(HttpHeaders.ContentLength, true) }
@@ -197,7 +201,6 @@ class Compression(compression: Configuration) {
                 conditions = conditions.toList()
         )
     }
-
 }
 
 private fun ApplicationCall.isCompressionSuppressed() = Compression.SuppressionAttribute in attributes
@@ -269,7 +272,6 @@ class CompressionEncoderBuilder internal constructor(val name: String, val encod
         return CompressionEncoderConfig(name, encoder, conditions.toList(), priority)
     }
 }
-
 
 /**
  * Appends `gzip` encoder

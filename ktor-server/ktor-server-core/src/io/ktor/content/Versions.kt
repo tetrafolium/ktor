@@ -139,4 +139,3 @@ data class EntityTagVersion(val etag: String) : Version {
         builder.etag(etag)
     }
 }
-

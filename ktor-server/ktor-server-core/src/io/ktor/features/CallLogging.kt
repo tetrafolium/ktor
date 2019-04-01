@@ -11,10 +11,12 @@ import org.slf4j.event.*
 /**
  * Logs application lifecycle and call events.
  */
-class CallLogging(private val log: Logger,
-                  private val monitor: ApplicationEvents,
-                  private val level: Level,
-                  private val filters: List<(ApplicationCall) -> Boolean>) {
+class CallLogging(
+    private val log: Logger,
+    private val monitor: ApplicationEvents,
+    private val level: Level,
+    private val filters: List<(ApplicationCall) -> Boolean>
+) {
 
     /**
      * Configuration for [CallLogging] feature

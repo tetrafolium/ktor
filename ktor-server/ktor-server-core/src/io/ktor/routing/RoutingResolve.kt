@@ -13,10 +13,12 @@ import io.ktor.util.*
  * @param parameters holds all captured values from selectors
  * @param quality represents quality value for resolution result
  */
-data class RoutingResolveResult(val succeeded: Boolean,
-                                val route: Route,
-                                val parameters: Parameters,
-                                val quality: Double)
+data class RoutingResolveResult(
+    val succeeded: Boolean,
+    val route: Route,
+    val parameters: Parameters,
+    val quality: Double
+)
 
 /**
  * Represents a context in which routing resolution is being performed
@@ -118,11 +120,9 @@ class RoutingResolveContext(val routing: Route, val call: ApplicationCall) {
 
         return bestResult ?: RoutingResolveResult(false, failEntry ?: entry, Parameters.Empty, 0.0)
     }
-
 }
 
 /**
  * Exception indicating a failure in a routing resolution process
  */
 class RoutingResolutionException(message: String) : Exception(message)
-

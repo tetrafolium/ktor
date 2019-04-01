@@ -47,7 +47,6 @@ class JettyPlatformBenchmark : PlatformBenchmark() {
                 "/sayOK" -> _plainHandler.handle(target, baseRequest, request, response)
             }
         }
-
     }
 
     private class PlainTextHandler : AbstractHandler() {

@@ -54,4 +54,3 @@ interface ApplicationEngine {
      */
     fun stop(gracePeriod: Long, timeout: Long, timeUnit: TimeUnit)
 }
-

@@ -8,7 +8,6 @@ import kotlinx.coroutines.experimental.*
 import kotlinx.coroutines.experimental.io.*
 import java.time.*
 
-
 @Volatile
 private var cachedDateText: String = ZonedDateTime.now(GreenwichMeanTime).toHttpDateString()
 

@@ -11,7 +11,6 @@ import kotlinx.coroutines.experimental.io.*
 import org.openjdk.jmh.infra.*
 import java.util.concurrent.atomic.*
 
-
 interface AsyncHttpBenchmarkClient {
     fun setup()
     fun shutdown()
@@ -54,7 +53,6 @@ class KtorBenchmarkClient(val engineFactory: HttpClientEngineFactory<*>) : Async
                         buffer.clear()
                         content.readAvailable(buffer)
                     }
-
                 }
 
                 done.incrementAndGet()

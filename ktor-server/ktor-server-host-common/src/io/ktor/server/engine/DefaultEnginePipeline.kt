@@ -58,5 +58,3 @@ private fun ApplicationEnvironment.logFailure(call: ApplicationCall, e: Throwabl
     }
 }
 
-
-

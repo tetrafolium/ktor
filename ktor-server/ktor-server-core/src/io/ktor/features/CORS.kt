@@ -73,7 +73,6 @@ class CORS(configuration: Configuration) {
         response.header(HttpHeaders.AccessControlAllowHeaders, headersListHeaderValue)
         accessControlMaxAge()
         respond(HttpStatusCode.OK)
-
     }
 
     private fun ApplicationCall.accessControlAllowOrigin(origin: String) {
@@ -257,8 +256,4 @@ class CORS(configuration: Configuration) {
         }
     }
 }
-
-
-
-
 

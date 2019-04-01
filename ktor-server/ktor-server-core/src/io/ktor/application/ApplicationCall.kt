@@ -34,4 +34,3 @@ interface ApplicationCall {
      */
     val parameters: Parameters
 }
-

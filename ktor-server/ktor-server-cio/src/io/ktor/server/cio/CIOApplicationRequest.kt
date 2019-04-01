@@ -8,9 +8,11 @@ import io.ktor.server.engine.*
 import io.ktor.util.*
 import kotlinx.coroutines.experimental.io.*
 
-class CIOApplicationRequest(call: ApplicationCall,
-                            private val input: ByteReadChannel,
-                            private val request: Request) : BaseApplicationRequest(call) {
+class CIOApplicationRequest(
+    call: ApplicationCall,
+    private val input: ByteReadChannel,
+    private val request: Request
+) : BaseApplicationRequest(call) {
     override val cookies: RequestCookies by lazy { RequestCookies(this) }
     override fun receiveContent() = CIOIncomingContent(input, request.headers, this)
     override fun receiveChannel() = input

@@ -7,8 +7,9 @@ import io.ktor.response.*
  * SessionTransport that sets or gets the specific header [name],
  * applying/un-applying the specified transforms defined by [transformers].
  */
-class SessionTransportHeader(val name: String,
-                             val transformers: List<SessionTransportTransformer>
+class SessionTransportHeader(
+    val name: String,
+    val transformers: List<SessionTransportTransformer>
 ) : SessionTransport {
     override fun receive(call: ApplicationCall): String? {
         return transformers.transformRead(call.request.headers[name])

@@ -27,4 +27,3 @@ class SessionTrackerByValue(val type: KClass<*>, val serializer: SessionSerializ
         // it's stateless, so nothing to clear
     }
 }
-

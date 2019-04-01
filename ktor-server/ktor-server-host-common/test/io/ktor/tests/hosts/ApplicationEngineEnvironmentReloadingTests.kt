@@ -64,7 +64,6 @@ class ApplicationEngineEnvironmentReloadingTests {
 */
     }
 
-
     @Test fun `top level non-extension function as module function`() {
         val environment = applicationEngineEnvironment {
             config = HoconApplicationConfig(ConfigFactory.parseMap(
@@ -207,7 +206,6 @@ class ApplicationEngineEnvironmentReloadingTests {
                             "ktor.deployment.environment" to "test",
                             "ktor.application.modules" to listOf(NoArgModuleFunction::class.functionFqName("main"))
                     )))
-
         }
         environment.start()
         val application = environment.application
@@ -223,7 +221,6 @@ class ApplicationEngineEnvironmentReloadingTests {
                             "ktor.deployment.environment" to "test",
                             "ktor.application.modules" to listOf(MultipleModuleFunctions::class.jvmName + ".main")
                     )))
-
         }
         environment.start()
         val application = environment.application
@@ -308,4 +305,3 @@ fun Application.topLevelExtensionFunction() {
 fun topLevelFunction(app: Application) {
     app.attributes.put(ApplicationEngineEnvironmentReloadingTests.TestKey, "topLevelFunction")
 }
-

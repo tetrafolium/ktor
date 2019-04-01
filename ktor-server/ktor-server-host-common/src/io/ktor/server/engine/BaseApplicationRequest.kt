@@ -11,4 +11,3 @@ abstract class BaseApplicationRequest(override val call: ApplicationCall) : Appl
         merge(call.application.receivePipeline)
     }
 }
-

@@ -26,4 +26,3 @@ data class RoutingPathSegment(val value: String, val kind: RoutingPathSegmentKin
 enum class RoutingPathSegmentKind {
     Constant, Parameter
 }
-

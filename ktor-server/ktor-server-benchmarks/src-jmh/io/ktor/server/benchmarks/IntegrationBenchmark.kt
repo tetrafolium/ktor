@@ -17,7 +17,6 @@ import org.slf4j.Logger
 import java.io.*
 import java.util.concurrent.*
 
-
 @State(Scope.Benchmark)
 abstract class IntegrationBenchmark<TEngine : ApplicationEngine> {
     private val coreDirectory = File("../ktor-server-core").absoluteFile.normalize()
@@ -216,5 +215,4 @@ fun main(args: Array<String>) {
         run<TestIntegrationBenchmark>()
     }
 }
-
 

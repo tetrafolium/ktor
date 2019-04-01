@@ -21,4 +21,3 @@ interface SessionTransport {
      */
     fun clear(call: ApplicationCall)
 }
-

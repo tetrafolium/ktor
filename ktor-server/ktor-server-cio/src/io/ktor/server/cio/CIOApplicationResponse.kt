@@ -9,12 +9,14 @@ import kotlinx.coroutines.experimental.*
 import kotlinx.coroutines.experimental.io.*
 import kotlin.coroutines.experimental.*
 
-class CIOApplicationResponse(call: CIOApplicationCall,
-                             private val output: ByteWriteChannel,
-                             private val input: ByteReadChannel,
-                             private val engineDispatcher: CoroutineContext,
-                             private val userDispatcher: CoroutineContext,
-                             private val upgraded: CompletableDeferred<Boolean>?) : BaseApplicationResponse(call) {
+class CIOApplicationResponse(
+    call: CIOApplicationCall,
+    private val output: ByteWriteChannel,
+    private val input: ByteReadChannel,
+    private val engineDispatcher: CoroutineContext,
+    private val userDispatcher: CoroutineContext,
+    private val upgraded: CompletableDeferred<Boolean>?
+) : BaseApplicationResponse(call) {
     private var statusCode: HttpStatusCode = HttpStatusCode.OK
     private val headersNames = ArrayList<String>()
     private val headerValues = ArrayList<String>()

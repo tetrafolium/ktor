@@ -60,7 +60,6 @@ object DefaultConversionService : ConversionService {
             } else
                 throw DataConversionException("Type $type is not supported in default data conversion service")
     }
-
 }
 
 class DataConversionException(message: String = "Invalid data format") : Exception(message)

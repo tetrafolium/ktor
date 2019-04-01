@@ -24,12 +24,12 @@ import kotlin.reflect.jvm.*
  * [watchPaths] specifies substrings to match against class path entries to monitor changes in folder/jar and implements hot reloading
  */
 class ApplicationEngineEnvironmentReloading(
-        override val classLoader: ClassLoader,
-        override val log: Logger,
-        override val config: ApplicationConfig,
-        override val connectors: List<EngineConnectorConfig>,
-        private val modules: List<Application.() -> Unit>,
-        private val watchPaths: List<String> = emptyList()
+    override val classLoader: ClassLoader,
+    override val log: Logger,
+    override val config: ApplicationConfig,
+    override val connectors: List<EngineConnectorConfig>,
+    private val modules: List<Application.() -> Unit>,
+    private val watchPaths: List<String> = emptyList()
 ) : ApplicationEngineEnvironment {
 
     private var _applicationInstance: Application? = null
@@ -339,7 +339,7 @@ class ApplicationEngineEnvironmentReloading(
                             if (p.type.toString().contains("Application")) {
                                 // It is possible that type is okay, but classloader is not
                                 val classLoader = (p.type.javaType as? Class<*>)?.classLoader
-                                throw IllegalArgumentException("Parameter type ${p.type}:{$classLoader} is not supported. Application is loaded as ${ApplicationClassInstance}:{${ApplicationClassInstance.classLoader}}")
+                                throw IllegalArgumentException("Parameter type ${p.type}:{$classLoader} is not supported. Application is loaded as $ApplicationClassInstance:{${ApplicationClassInstance.classLoader}}")
                             }
                             throw IllegalArgumentException("Parameter type '${p.type}' of parameter '${p.name ?: "<receiver>"}' is not supported")
                         }

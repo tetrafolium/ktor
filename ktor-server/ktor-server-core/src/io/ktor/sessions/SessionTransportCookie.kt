@@ -10,9 +10,10 @@ import java.time.temporal.*
  * for the specified cookie [name], and a specific cookie [configuration] after
  * applying/un-applying the specified transforms defined by [transformers].
  */
-class SessionTransportCookie(val name: String,
-                             val configuration: CookieConfiguration,
-                             val transformers: List<SessionTransportTransformer>
+class SessionTransportCookie(
+    val name: String,
+    val configuration: CookieConfiguration,
+    val transformers: List<SessionTransportTransformer>
 ) : SessionTransport {
 
     override fun receive(call: ApplicationCall): String? {

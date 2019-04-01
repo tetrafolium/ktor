@@ -107,4 +107,3 @@ fun ApplicationCall.defaultTextContentType(contentType: ContentType?): ContentTy
     else
         result
 }
-

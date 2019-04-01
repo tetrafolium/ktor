@@ -6,9 +6,11 @@ import io.ktor.util.*
 import kotlinx.coroutines.experimental.io.*
 import java.io.*
 
-class WriterContent(private val body: suspend Writer.() -> Unit,
-                    override val contentType: ContentType,
-                    override val status: HttpStatusCode? = null) : OutgoingContent.WriteChannelContent() {
+class WriterContent(
+    private val body: suspend Writer.() -> Unit,
+    override val contentType: ContentType,
+    override val status: HttpStatusCode? = null
+) : OutgoingContent.WriteChannelContent() {
 
     override suspend fun writeTo(channel: ByteWriteChannel) {
         val charset = contentType.charset() ?: Charsets.UTF_8
@@ -17,6 +19,4 @@ class WriterContent(private val body: suspend Writer.() -> Unit,
         }
     }
 }
-
-
 

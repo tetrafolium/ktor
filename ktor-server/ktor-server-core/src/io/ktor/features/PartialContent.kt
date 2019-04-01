@@ -72,7 +72,7 @@ class PartialContent(private val maxRangeCount: Int) {
 
         call.response.pipeline.registerPhase()
         call.attributes.put(Compression.SuppressionAttribute, true)
-        call.response.pipeline.intercept(PartialContentPhase) response@ { message ->
+        call.response.pipeline.intercept(PartialContentPhase) response@{ message ->
             if (message is OutgoingContent.ReadChannelContent && message !is PartialOutgoingContent) {
                 val length = message.contentLength ?: return@response
                 tryProcessRange(message, call, rangeSpecifier, length)
@@ -85,10 +85,10 @@ class PartialContent(private val maxRangeCount: Int) {
     }
 
     private suspend fun PipelineContext<Any, ApplicationCall>.tryProcessRange(
-            content: OutgoingContent.ReadChannelContent,
-            call: ApplicationCall,
-            rangesSpecifier: RangesSpecifier,
-            length: Long
+        content: OutgoingContent.ReadChannelContent,
+        call: ApplicationCall,
+        rangesSpecifier: RangesSpecifier,
+        length: Long
     ) {
         if (checkIfRangeHeader(content, call)) {
             processRange(content, rangesSpecifier, length)
@@ -112,9 +112,9 @@ class PartialContent(private val maxRangeCount: Int) {
     }
 
     private suspend fun PipelineContext<Any, ApplicationCall>.processRange(
-            content: OutgoingContent.ReadChannelContent,
-            rangesSpecifier: RangesSpecifier,
-            length: Long
+        content: OutgoingContent.ReadChannelContent,
+        rangesSpecifier: RangesSpecifier,
+        length: Long
     ) {
         require(length >= 0L)
         val merged = rangesSpecifier.merge(length, maxRangeCount)

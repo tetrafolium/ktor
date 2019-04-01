@@ -10,7 +10,6 @@ import kotlin.reflect.*
 import kotlin.reflect.full.*
 import kotlin.reflect.jvm.*
 
-
 inline fun <reified T : Any> autoSerializerOf(): SessionSerializerReflection<T> = autoSerializerOf(T::class)
 fun <T : Any> autoSerializerOf(type: KClass<T>): SessionSerializerReflection<T> = SessionSerializerReflection(type)
 
@@ -297,7 +296,5 @@ class SessionSerializerReflection<T : Any>(val type: KClass<T>) : SessionSeriali
             }
 }
 
-
 @Suppress("UNCHECKED_CAST")
 private fun <T : Any> Any.cast(type: KClass<T>) = if (type.java.isInstance(this)) this as T else throw ClassCastException("${this::class} couldn't be cast to $type")
-

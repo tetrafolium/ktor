@@ -82,12 +82,14 @@ inline fun <reified T> CurrentSession.set(value: T?) = set(findName(T::class), v
 inline fun <reified T> CurrentSession.get(): T? = get(findName(T::class)) as T?
 inline fun <reified T> CurrentSession.clear() = clear(findName(T::class))
 
-private data class SessionData(val sessions: Sessions,
-                               val providerData: Map<String, SessionProviderData>) : CurrentSession {
+private data class SessionData(
+    val sessions: Sessions,
+    val providerData: Map<String, SessionProviderData>
+) : CurrentSession {
 
     override fun findName(type: KClass<*>): String {
-        val entry = providerData.entries.firstOrNull { it.value.provider.type == type } ?:
-                throw IllegalArgumentException("Session data for type `$type` was not registered")
+        val entry = providerData.entries.firstOrNull { it.value.provider.type == type }
+                ?: throw IllegalArgumentException("Session data for type `$type` was not registered")
         return entry.value.provider.name
     }
 
@@ -112,4 +114,3 @@ private data class SessionData(val sessions: Sessions,
 private data class SessionProviderData(var value: Any?, val incoming: Boolean, val provider: SessionProvider)
 
 private val SessionKey = AttributeKey<SessionData>("SessionKey")
-

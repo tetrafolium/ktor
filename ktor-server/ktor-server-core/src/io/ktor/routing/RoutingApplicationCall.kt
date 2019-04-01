@@ -9,11 +9,13 @@ import io.ktor.util.*
 /**
  * Represents an application call being handled by [Routing]
  */
-class RoutingApplicationCall(private val call: ApplicationCall,
-                             val route: Route,
-                             receivePipeline: ApplicationReceivePipeline,
-                             responsePipeline: ApplicationSendPipeline,
-                             parameters: Parameters) : ApplicationCall {
+class RoutingApplicationCall(
+    private val call: ApplicationCall,
+    val route: Route,
+    receivePipeline: ApplicationReceivePipeline,
+    responsePipeline: ApplicationSendPipeline,
+    parameters: Parameters
+) : ApplicationCall {
 
     override val application: Application get() = call.application
     override val attributes: Attributes get() = call.attributes
@@ -31,10 +33,14 @@ class RoutingApplicationCall(private val call: ApplicationCall,
     override fun toString() = "RoutingApplicationCall(route=$route)"
 }
 
-class RoutingApplicationRequest(override val call: RoutingApplicationCall,
-                                override val pipeline: ApplicationReceivePipeline,
-                                request: ApplicationRequest) : ApplicationRequest by request
+class RoutingApplicationRequest(
+    override val call: RoutingApplicationCall,
+    override val pipeline: ApplicationReceivePipeline,
+    request: ApplicationRequest
+) : ApplicationRequest by request
 
-class RoutingApplicationResponse(override val call: RoutingApplicationCall,
-                                 override val pipeline: ApplicationSendPipeline,
-                                 response: ApplicationResponse) : ApplicationResponse by response
+class RoutingApplicationResponse(
+    override val call: RoutingApplicationCall,
+    override val pipeline: ApplicationSendPipeline,
+    response: ApplicationResponse
+) : ApplicationResponse by response

@@ -84,4 +84,3 @@ val Route.application: Application
  * Gets or installs a [Routing] feature for the this [Application] and runs a [configuration] script on it
  */
 fun Application.routing(configuration: Routing.() -> Unit) = featureOrNull(Routing)?.apply(configuration) ?: install(Routing, configuration)
-

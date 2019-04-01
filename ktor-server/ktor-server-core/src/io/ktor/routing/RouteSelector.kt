@@ -12,10 +12,12 @@ import io.ktor.util.*
  * @param parameters is an instance of [Parameters] with parameters filled by [RouteSelector]
  * @param segmentIncrement is a value indicating how many path segments has been consumed by a selector
  */
-data class RouteSelectorEvaluation(val succeeded: Boolean,
-                                   val quality: Double,
-                                   val parameters: Parameters = Parameters.Empty,
-                                   val segmentIncrement: Int = 0) {
+data class RouteSelectorEvaluation(
+    val succeeded: Boolean,
+    val quality: Double,
+    val parameters: Parameters = Parameters.Empty,
+    val segmentIncrement: Int = 0
+) {
     companion object {
         /**
          * Route evaluation failed to succeed, route doesn't match a context
@@ -152,16 +154,14 @@ data class PathSegmentParameterRouteSelector(val name: String, val prefix: Strin
             val part = context.segments[segmentIndex]
             val prefixChecked = if (prefix == null)
                 part
-            else
-                if (part.startsWith(prefix))
+            else if (part.startsWith(prefix))
                     part.drop(prefix.length)
                 else
                     return RouteSelectorEvaluation.Failed
 
             val suffixChecked = if (suffix == null)
                 prefixChecked
-            else
-                if (prefixChecked.endsWith(suffix))
+            else if (prefixChecked.endsWith(suffix))
                     prefixChecked.dropLast(suffix.length)
                 else
                     return RouteSelectorEvaluation.Failed
@@ -187,16 +187,14 @@ data class PathSegmentOptionalParameterRouteSelector(val name: String, val prefi
             val part = context.segments[segmentIndex]
             val prefixChecked = if (prefix == null)
                 part
-            else
-                if (part.startsWith(prefix))
+            else if (part.startsWith(prefix))
                     part.drop(prefix.length)
                 else
                     return RouteSelectorEvaluation.Missing
 
             val suffixChecked = if (suffix == null)
                 prefixChecked
-            else
-                if (prefixChecked.endsWith(suffix))
+            else if (prefixChecked.endsWith(suffix))
                     prefixChecked.dropLast(suffix.length)
                 else
                     return RouteSelectorEvaluation.Missing

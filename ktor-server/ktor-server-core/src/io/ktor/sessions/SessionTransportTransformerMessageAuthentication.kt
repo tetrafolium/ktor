@@ -29,4 +29,3 @@ class SessionTransportTransformerMessageAuthentication(val keySpec: SecretKeySpe
         return hex(mac.doFinal(value.toByteArray()))
     }
 }
-

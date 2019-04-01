@@ -6,12 +6,11 @@ import kotlinx.coroutines.experimental.io.jvm.javaio.*
 import org.junit.Test
 import kotlin.test.*
 
-
 class ByteRangesChannelTest {
     @Test
     fun testAscendingNoLength() {
         val source = asyncOf("0123456789abcdef")
-        val result = writeMultipleRanges(source, listOf(1L .. 3L, 5L..6L), null, "boundary-1", "text/plain")
+        val result = writeMultipleRanges(source, listOf(1L..3L, 5L..6L), null, "boundary-1", "text/plain")
 
         assertEquals("""
         --boundary-1
@@ -32,7 +31,7 @@ class ByteRangesChannelTest {
     @Test
     fun testAscendingWithLength() {
         val source = asyncOf("0123456789abcdef")
-        val ranges = writeMultipleRanges(source, listOf(1L .. 3L, 5L..6L), 99L, "boundary-1", "text/plain")
+        val ranges = writeMultipleRanges(source, listOf(1L..3L, 5L..6L), 99L, "boundary-1", "text/plain")
 
         assertEquals("""
         --boundary-1
@@ -53,7 +52,7 @@ class ByteRangesChannelTest {
     @Test
     fun testNonAscendingNoLength() {
         val source = asyncOf("0123456789abcdef")
-        val ranges = writeMultipleRanges(source, listOf(1L .. 3L, 5L .. 6L, 0L .. 1L), null, "boundary-1", "text/plain")
+        val ranges = writeMultipleRanges(source, listOf(1L..3L, 5L..6L, 0L..1L), null, "boundary-1", "text/plain")
 
         assertEquals("""
         --boundary-1

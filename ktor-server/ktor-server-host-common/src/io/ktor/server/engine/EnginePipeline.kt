@@ -9,4 +9,3 @@ class EnginePipeline : Pipeline<Unit, ApplicationCall>(Before, Call) {
         val Call = PipelinePhase("call")
     }
 }
-

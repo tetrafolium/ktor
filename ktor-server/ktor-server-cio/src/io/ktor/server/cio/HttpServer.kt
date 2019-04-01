@@ -20,9 +20,9 @@ import kotlin.coroutines.experimental.*
 class HttpServer(val rootServerJob: Job, val acceptJob: Job, val serverSocket: Deferred<ServerSocket>)
 
 data class HttpServerSettings(
-        val host: String = "0.0.0.0",
-        val port: Int = 8080,
-        val connectionIdleTimeoutSeconds: Long = 45
+    val host: String = "0.0.0.0",
+    val port: Int = 8080,
+    val connectionIdleTimeoutSeconds: Long = 45
 )
 
 fun httpServer(settings: HttpServerSettings, parentJob: Job? = null, callDispatcher: CoroutineContext = ioCoroutineDispatcher, handler: HttpRequestHandler): HttpServer {

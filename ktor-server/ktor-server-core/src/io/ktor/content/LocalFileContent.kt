@@ -13,8 +13,10 @@ import java.nio.file.*
  *
  * @param file specifies the File to be served to a client
  */
-class LocalFileContent(val file: File,
-                       override val contentType: ContentType = ContentType.defaultForFile(file)) : OutgoingContent.ReadChannelContent() {
+class LocalFileContent(
+    val file: File,
+    override val contentType: ContentType = ContentType.defaultForFile(file)
+) : OutgoingContent.ReadChannelContent() {
 
     override val contentLength: Long get() = file.length()
 
@@ -32,15 +34,21 @@ class LocalFileContent(val file: File,
 /**
  * Creates an instance of [LocalFileContent] for a file designated by [relativePath] in a [baseDir]
  */
-fun LocalFileContent(baseDir: File, relativePath: String,
-                     contentType: ContentType = ContentType.defaultForFilePath(relativePath)): LocalFileContent {
+fun LocalFileContent(
+    baseDir: File,
+    relativePath: String,
+    contentType: ContentType = ContentType.defaultForFilePath(relativePath)
+): LocalFileContent {
     return LocalFileContent(baseDir.combineSafe(relativePath), contentType)
 }
 
 /**
  * Creates an instance of [LocalFileContent] for a file designated by [relativePath] in a [baseDir]
  */
-fun LocalFileContent(baseDir: Path, relativePath: Path,
-                     contentType: ContentType = ContentType.defaultForFile(relativePath)): LocalFileContent {
+fun LocalFileContent(
+    baseDir: Path,
+    relativePath: Path,
+    contentType: ContentType = ContentType.defaultForFile(relativePath)
+): LocalFileContent {
     return LocalFileContent(baseDir.combineSafe(relativePath), contentType)
 }
