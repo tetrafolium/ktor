@@ -21,7 +21,7 @@ suspend fun IncomingContent.readText(pool: ObjectPool<ByteBuffer>, charset: Char
 suspend fun IncomingContent.readText() = readText(charset() ?: Charsets.ISO_8859_1)
 
 suspend fun IncomingContent.readText(
-        charset: Charset
+    charset: Charset
 ): String {
     val channel = readChannel()
     if (channel.isClosedForRead) return ""

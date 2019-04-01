@@ -9,12 +9,12 @@ import kotlinx.io.pool.*
 import java.nio.channels.*
 
 internal fun attachForReadingImpl(
-        channel: ByteChannel,
-        nioChannel: ReadableByteChannel,
-        selectable: Selectable,
-        selector: SelectorManager,
-        pool: ObjectPool<ByteBuffer>,
-        parent: Job
+    channel: ByteChannel,
+    nioChannel: ReadableByteChannel,
+    selectable: Selectable,
+    selector: SelectorManager,
+    pool: ObjectPool<ByteBuffer>,
+    parent: Job
 ): WriterJob {
     val buffer = pool.borrow()
     return writer(ioCoroutineDispatcher, channel, parent) {
@@ -48,11 +48,11 @@ internal fun attachForReadingImpl(
 }
 
 internal fun attachForReadingDirectImpl(
-        channel: ByteChannel,
-        nioChannel: ReadableByteChannel,
-        selectable: Selectable,
-        selector: SelectorManager,
-        parent: Job
+    channel: ByteChannel,
+    nioChannel: ReadableByteChannel,
+    selectable: Selectable,
+    selector: SelectorManager,
+    parent: Job
 ): WriterJob {
     return writer(ioCoroutineDispatcher, channel, parent) {
         try {

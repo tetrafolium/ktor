@@ -34,4 +34,3 @@ inline fun String.chomp(separator: String, onMissingDelimiter: () -> Pair<String
         else -> substring(0, idx) to substring(idx + 1)
     }
 }
-

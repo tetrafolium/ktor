@@ -4,7 +4,6 @@ import io.ktor.http.*
 import java.net.*
 import kotlin.test.*
 
-
 class URLBuilderTest {
     val urlString = "http://localhost:8080/path"
 
@@ -19,7 +18,6 @@ class URLBuilderTest {
             assertEquals("/path", fullPath)
             assertEquals(8080, port)
         }
-
     }
 
     @Test

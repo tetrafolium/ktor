@@ -8,7 +8,6 @@ import kotlinx.io.pool.*
 import java.nio.ByteBuffer
 import java.util.zip.*
 
-
 private const val GZIP_MAGIC = 0x8b1f
 private val headerPadding = ByteArray(7)
 
@@ -50,8 +49,8 @@ private suspend fun ByteWriteChannel.deflateWhile(deflater: Deflater, buffer: By
 }
 
 fun ByteReadChannel.deflated(
-        gzip: Boolean = true,
-        pool: ObjectPool<ByteBuffer> = KtorDefaultPool
+    gzip: Boolean = true,
+    pool: ObjectPool<ByteBuffer> = KtorDefaultPool
 ): ByteReadChannel = writer(Unconfined, autoFlush = true) {
     channel.writeByteOrder = ByteOrder.LITTLE_ENDIAN
     val crc = CRC32()
@@ -87,8 +86,8 @@ fun ByteReadChannel.deflated(
 }.channel
 
 fun ByteWriteChannel.deflated(
-        gzip: Boolean = true,
-        pool: ObjectPool<ByteBuffer> = KtorDefaultPool
+    gzip: Boolean = true,
+    pool: ObjectPool<ByteBuffer> = KtorDefaultPool
 ): ByteWriteChannel = reader(Unconfined, autoFlush = true) {
     channel.deflated(gzip, pool).joinTo(this@deflated, closeOnEnd = true)
 }.channel

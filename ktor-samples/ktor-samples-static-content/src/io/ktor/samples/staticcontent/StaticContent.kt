@@ -6,7 +6,6 @@ import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import java.io.*
 
-
 fun main(args: Array<String>) {
     embeddedServer(Netty, 8080) {
         routing {

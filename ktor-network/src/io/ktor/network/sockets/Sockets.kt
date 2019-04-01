@@ -60,7 +60,6 @@ interface ReadWriteSocket : ASocket, AReadable, AWritable
 fun AReadable.openReadChannel(): ByteReadChannel = ByteChannel(false).also { attachForReading(it) }
 fun AWritable.openWriteChannel(autoFlush: Boolean = false): ByteWriteChannel = ByteChannel(autoFlush).also { attachForWriting(it) }
 
-
 interface Socket : ReadWriteSocket, ABoundSocket, AConnectedSocket
 
 interface ServerSocket : ASocket, ABoundSocket, Acceptable<Socket>

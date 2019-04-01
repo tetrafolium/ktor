@@ -3,7 +3,6 @@ package io.ktor.network.tls
 import javax.crypto.*
 import javax.crypto.spec.*
 
-
 private val MASTER_SECRET_LABEL = "master secret".toByteArray()
 private val KEY_EXPANSION_LABEL = "key expansion".toByteArray()
 

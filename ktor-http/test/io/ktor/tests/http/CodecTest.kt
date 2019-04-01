@@ -122,5 +122,4 @@ class CodecTest {
     private fun encodeAndDecodeTestURLPart(s: String) {
         assertEquals(s, decodeURLPart(encodeURLPart(s)))
     }
-
 }

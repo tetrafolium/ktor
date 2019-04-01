@@ -91,45 +91,45 @@ class RangesTest {
 
     @Test
     fun testMergeRanges() {
-        val ranges = longRanges(0 .. 10, 12 .. 13)
-        assertEquals(longRanges(0 .. 10, 12 .. 13), ranges.mergeRangesKeepOrder())
+        val ranges = longRanges(0..10, 12..13)
+        assertEquals(longRanges(0..10, 12..13), ranges.mergeRangesKeepOrder())
     }
 
     @Test
     fun testMergeRangesReverse() {
-        val ranges = longRanges(12 .. 13, 0 .. 10)
-        assertEquals(longRanges(12 .. 13, 0 .. 10), ranges.mergeRangesKeepOrder())
+        val ranges = longRanges(12..13, 0..10)
+        assertEquals(longRanges(12..13, 0..10), ranges.mergeRangesKeepOrder())
     }
 
     @Test
     fun testMergeRangesJustOneByte() {
-        val ranges = longRanges(500 .. 600, 601 .. 999)
-        assertEquals(longRanges(500 .. 999), ranges.mergeRangesKeepOrder())
+        val ranges = longRanges(500..600, 601..999)
+        assertEquals(longRanges(500..999), ranges.mergeRangesKeepOrder())
     }
 
     @Test
     fun testMergeRangesIntersection() {
-        val ranges = longRanges(500 .. 700, 601 .. 999)
-        assertEquals(longRanges(500 .. 999), ranges.mergeRangesKeepOrder())
+        val ranges = longRanges(500..700, 601..999)
+        assertEquals(longRanges(500..999), ranges.mergeRangesKeepOrder())
     }
 
     @Test
     fun testMergeRangesIntersectionOneInsideAnother() {
-        val ranges = longRanges(0 .. 100, 10 .. 50)
+        val ranges = longRanges(0..100, 10..50)
 
-        assertEquals(longRanges(0 .. 100), ranges.mergeRangesKeepOrder())
+        assertEquals(longRanges(0..100), ranges.mergeRangesKeepOrder())
     }
 
     @Test
     fun testMergeRangesSameStart() {
-        val ranges = longRanges(0 .. 10, 0 .. 50)
+        val ranges = longRanges(0..10, 0..50)
 
-        assertEquals(longRanges(0 .. 50), ranges.mergeRangesKeepOrder())
+        assertEquals(longRanges(0..50), ranges.mergeRangesKeepOrder())
     }
 
     @Test
     fun testMergeRangesMultiple() {
-        val ranges = longRanges(100 .. 200, 10 .. 15, 80 .. 99)
+        val ranges = longRanges(100..200, 10..15, 80..99)
         assertEquals(longRanges(80..200, 10..15), ranges.mergeRangesKeepOrder())
     }
 

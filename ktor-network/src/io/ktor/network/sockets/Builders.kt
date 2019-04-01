@@ -35,7 +35,7 @@ interface Configurable<out T : Configurable<T>> {
     }
 }
 
-fun <T: Configurable<T>> T.tcpNoDelay(): T {
+fun <T : Configurable<T>> T.tcpNoDelay(): T {
     return configure {
         this[StandardSocketOptions.TCP_NODELAY] = true
     }

@@ -53,7 +53,6 @@ fun HTML.invalidRequest(message: String) {
     }
 }
 
-
 data class ImageConfig(val path: String, val contentType: ContentType, val filename: String)
 
 /** For /deny **/
@@ -69,6 +68,4 @@ val ANGRY_ASCII = """
           '-......-'
      YOU SHOULDN'T BE HERE
 """
-
-
 

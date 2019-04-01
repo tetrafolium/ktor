@@ -59,4 +59,3 @@ suspend fun ApplicationCall.respondDefaultHtml(versions: List<Version>, visibili
     respond(content)
 }
 
-

@@ -6,7 +6,6 @@ import kotlinx.io.core.*
 import javax.crypto.*
 import javax.crypto.spec.*
 
-
 internal fun encryptCipher(suite: CipherSuite, keyMaterial: ByteArray, recordType: TLSRecordType, recordLength: Int, recordIv: Long, seq: Long): Cipher {
     val cipher = Cipher.getInstance(suite.jdkCipherName)
 
@@ -80,7 +79,6 @@ internal fun decryptCipher(suite: CipherSuite, keyMaterial: ByteArray, recordTyp
 
     return cipher
 }
-
 
 internal fun ByteReadPacket.encrypted(cipher: Cipher, recordIv: Long): ByteReadPacket {
     val buffer = DefaultByteBufferPool.borrow()

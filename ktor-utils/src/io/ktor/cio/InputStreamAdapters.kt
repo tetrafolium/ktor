@@ -7,8 +7,8 @@ import java.io.*
 import java.nio.ByteBuffer
 
 fun InputStream.toByteReadChannel(
-        pool: ObjectPool<ByteBuffer> = KtorDefaultPool,
-        parent: Job = Job()
+    pool: ObjectPool<ByteBuffer> = KtorDefaultPool,
+    parent: Job = Job()
 ): ByteReadChannel = writer(Unconfined, parent = parent, autoFlush = true) {
     val buffer = pool.borrow()
     try {

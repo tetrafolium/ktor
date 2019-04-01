@@ -54,4 +54,3 @@ fun Route.login(users: UserHashedTableAuth) {
         }
     }
 }
-

@@ -134,5 +134,4 @@ abstract class SelectorManagerSupport internal constructor() : SelectorManager {
         set(newValue) {
             attach(newValue)
         }
-
 }

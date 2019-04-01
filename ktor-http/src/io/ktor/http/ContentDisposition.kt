@@ -1,7 +1,7 @@
 package io.ktor.http
 
 class ContentDisposition(disposition: String, parameters: List<HeaderValueParam> = emptyList()) : HeaderValueWithParameters(disposition, parameters) {
-    val disposition : String get() = content
+    val disposition: String get() = content
 
     val name: String?
         get() = parameter(Parameters.Name)

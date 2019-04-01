@@ -4,7 +4,6 @@ enum class TLSAlertLevel(val code: Int) {
     WARNING(1),
     FATAL(2);
 
-
     companion object {
         private val byCode = Array(256) { idx -> TLSAlertLevel.values().firstOrNull { it.code == idx } }
 

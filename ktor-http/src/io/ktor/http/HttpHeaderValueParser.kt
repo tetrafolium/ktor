@@ -4,9 +4,9 @@ import java.util.*
 
 data class HeaderValueParam(val name: String, val value: String) {
     override fun equals(other: Any?): Boolean {
-        return other is HeaderValueParam
-                && other.name.equals(name, ignoreCase = true)
-                && other.value.equals(value, ignoreCase = true)
+        return other is HeaderValueParam &&
+                other.name.equals(name, ignoreCase = true) &&
+                other.value.equals(value, ignoreCase = true)
     }
 
     override fun hashCode(): Int {
@@ -104,7 +104,6 @@ private fun parseHeaderValueParameter(text: String, start: Int, parameters: Lazy
     parameters.addParam(text, start, pos, "")
     return pos
 }
-
 
 private fun parseHeaderValueParameterValue(value: String, start: Int): Pair<Int, String> {
     var pos = start

@@ -51,8 +51,8 @@ class ServerSocketTest {
 
     @Test
     fun testBindAndAccept() {
-        server {  }
-        client {  }
+        server { }
+        client { }
     }
 
     @Test

@@ -13,4 +13,3 @@ fun ByteWriteChannel.bufferedWriter(charset: Charset = Charsets.UTF_8): Buffered
 
 fun ByteWriteChannel.writer(charset: Charset = Charsets.UTF_8): Writer =
         toOutputStream().writer(charset)
-

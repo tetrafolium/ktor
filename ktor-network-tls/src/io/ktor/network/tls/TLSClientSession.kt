@@ -14,11 +14,11 @@ import javax.net.ssl.*
 import kotlin.coroutines.experimental.*
 
 internal class TLSClientSession(
-        val input: ByteReadChannel,
-        val output: ByteWriteChannel,
-        val trustManager: X509TrustManager? = null,
-        val serverName: String? = null,
-        val coroutineContext: CoroutineContext
+    val input: ByteReadChannel,
+    val output: ByteWriteChannel,
+    val trustManager: X509TrustManager? = null,
+    val serverName: String? = null,
+    val coroutineContext: CoroutineContext
 ) : AReadable, AWritable {
     private var readerJob: ReaderJob? = null
     private var writerJob: WriterJob? = null

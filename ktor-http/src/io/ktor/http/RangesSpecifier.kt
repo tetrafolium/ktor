@@ -41,7 +41,7 @@ data class RangesSpecifier(val unit: String = RangeUnits.Bytes.unitToken, val ra
         val start = mapped.minBy { it.start }!!.start
         val endInclusive = mapped.maxBy { it.endInclusive }!!.endInclusive.coerceAtMost(length - 1)
 
-        return start .. endInclusive
+        return start..endInclusive
     }
 
     override fun toString(): String = ranges.joinToString(",", prefix = unit + "=")

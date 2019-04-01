@@ -14,7 +14,7 @@ class CaseInsensitiveMap<V>(initialCapacity: Int = 16) : AbstractLinkedMap<Strin
         val s = key as String     // otherwise we get checkcast instruction for every charAt invocation
         var hashCode = 0
 
-        for (idx in 0 .. s.length - 1) {
+        for (idx in 0..s.length - 1) {
             hashCode = 31 * hashCode + s[idx].toLowerCase().toInt()
         }
 

@@ -8,11 +8,10 @@ import java.security.*
 import javax.crypto.*
 import kotlin.coroutines.experimental.*
 
-
 internal suspend fun hashMessages(
-        messages: List<ByteReadPacket>,
-        baseHash: String,
-        coroutineContext: CoroutineContext
+    messages: List<ByteReadPacket>,
+    baseHash: String,
+    coroutineContext: CoroutineContext
 ): ByteArray {
     val messageDigest = MessageDigest.getInstance(baseHash)
     val digestBytes = ByteArray(messageDigest.digestLength)

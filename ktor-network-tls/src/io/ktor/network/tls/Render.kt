@@ -95,10 +95,10 @@ fun BytePacketBuilder.writeChangeCipherSpec(header: TLSRecordHeader) {
 }
 
 internal suspend fun finished(
-        messages: List<ByteReadPacket>,
-        baseHash: String,
-        secretKey: SecretKeySpec,
-        coroutineContext: CoroutineContext
+    messages: List<ByteReadPacket>,
+    baseHash: String,
+    secretKey: SecretKeySpec,
+    coroutineContext: CoroutineContext
 ): ByteReadPacket {
     val digestBytes = hashMessages(messages, baseHash, coroutineContext)
     return finished(digestBytes, secretKey)

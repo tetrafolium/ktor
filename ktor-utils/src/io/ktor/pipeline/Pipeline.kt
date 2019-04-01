@@ -22,9 +22,9 @@ open class Pipeline<TSubject : Any, TContext : Any>(vararg phases: PipelinePhase
     suspend fun execute(context: TContext, subject: TSubject): TSubject = PipelineContext(context, interceptors(), subject).proceed()
 
     private class PhaseContent<TSubject : Any, Call : Any>(
-            val phase: PipelinePhase,
-            val relation: PipelinePhaseRelation,
-            val interceptors: ArrayList<PipelineInterceptor<TSubject, Call>>
+        val phase: PipelinePhase,
+        val relation: PipelinePhaseRelation,
+        val interceptors: ArrayList<PipelineInterceptor<TSubject, Call>>
     ) {
         override fun toString(): String = "Phase `${phase.name}`, ${interceptors.size} handlers"
     }
@@ -185,10 +185,11 @@ suspend inline fun <TContext : Any> Pipeline<Unit, TContext>.execute(context: TC
  * Intercepts an untyped pipeline when the subject is of the given type
  */
 inline fun <reified TSubject : Any, TContext : Any> Pipeline<*, TContext>.intercept(
-        phase: PipelinePhase,
-        noinline block: suspend PipelineContext<TSubject, TContext>.(TSubject) -> Unit) {
+    phase: PipelinePhase,
+    noinline block: suspend PipelineContext<TSubject, TContext>.(TSubject) -> Unit
+) {
 
-    intercept(phase) interceptor@ { subject ->
+    intercept(phase) interceptor@{ subject ->
         subject as? TSubject ?: return@interceptor
         @Suppress("UNCHECKED_CAST")
         val reinterpret = this as? PipelineContext<TSubject, TContext>
@@ -200,4 +201,3 @@ inline fun <reified TSubject : Any, TContext : Any> Pipeline<*, TContext>.interc
  * Represents an interceptor type which is a suspend extension function for context
  */
 typealias PipelineInterceptor<TSubject, TContext> = suspend PipelineContext<TSubject, TContext>.(TSubject) -> Unit
-

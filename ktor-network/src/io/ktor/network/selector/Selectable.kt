@@ -69,4 +69,3 @@ internal open class SelectableBase(override val channel: SelectableChannel) : Se
         val InterestedOps = AtomicIntegerFieldUpdater.newUpdater(SelectableBase::class.java, SelectableBase::interestedOps.name)!!
     }
 }
-

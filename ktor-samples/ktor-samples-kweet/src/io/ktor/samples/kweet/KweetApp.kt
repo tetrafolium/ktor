@@ -101,7 +101,6 @@ class KweetApp {
         hmac.init(hmacKey)
         return hex(hmac.doFinal(password.toByteArray(Charsets.UTF_8)))
     }
-
 }
 
 suspend fun ApplicationCall.redirect(location: Any) {
@@ -116,8 +115,8 @@ fun ApplicationCall.securityCode(date: Long, user: User, hashFunction: (String) 
         hashFunction("$date:${user.userId}:${request.host()}:${refererHost()}")
 
 fun ApplicationCall.verifyCode(date: Long, user: User, code: String, hashFunction: (String) -> String) =
-        securityCode(date, user, hashFunction) == code
-                && (System.currentTimeMillis() - date).let { it > 0 && it < TimeUnit.MILLISECONDS.convert(2, TimeUnit.HOURS) }
+        securityCode(date, user, hashFunction) == code &&
+                (System.currentTimeMillis() - date).let { it > 0 && it < TimeUnit.MILLISECONDS.convert(2, TimeUnit.HOURS) }
 
 fun ApplicationCall.refererHost() = request.header(HttpHeaders.Referrer)?.let { URI.create(it).host }
 

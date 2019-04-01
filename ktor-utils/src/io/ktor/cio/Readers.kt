@@ -4,7 +4,6 @@ import kotlinx.coroutines.experimental.io.*
 import kotlinx.io.pool.*
 import java.io.*
 
-
 suspend fun ByteReadChannel.toByteArray(sizeHint: Int = 0, pool: ObjectPool<ByteBuffer> = KtorDefaultPool): ByteArray {
     val result = ByteArrayOutputStream(sizeHint)
     pool.use { buffer ->

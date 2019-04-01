@@ -108,7 +108,7 @@ class PipelineTest {
                 p2.execute(Unit, "p2")
                 proceed()
                 events.add("success-p1-1 $subject")
-            } catch(t: Throwable) {
+            } catch (t: Throwable) {
                 events.add("fail-p1-1 $subject")
                 throw t
             }
@@ -214,7 +214,6 @@ class PipelineTest {
         pipeline.executeBlocking("some")
         assertEquals(listOf("intercept1 some", "intercept2 some", "fail2 some", "fail1 some"), events)
     }
-
 
     @Test
     fun forkSuccess() {
@@ -358,7 +357,6 @@ class PipelineTest {
             secondary.execute(Unit, "another")
             proceed()
         }
-
 
         pipeline.executeBlocking("some")
         assertEquals(listOf("intercept1 some", "future1 some", "intercept2 another", "success1 some"), events)

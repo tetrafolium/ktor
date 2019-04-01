@@ -8,19 +8,19 @@ import io.ktor.response.*
 import io.ktor.util.*
 
 class HttpBinResponse(
-        var parameters: Parameters? = null,
-        var headers: Map<String, List<String>>? = null,
-        var origin: String? = null,
-        var url: String? = null,
-        var `user-agent`: String? = null,
-        var data: String? = null,
-        var files: Map<String, PartData.FileItem>? = null,
-        var form: Parameters? = null,
-        val json: Map<String, Any>? = null,
-        var gzipped: Boolean? = null,
-        var deflated: Boolean? = null,
-        var method: String? = null,
-        var cookies: Map<String, String>? = null
+    var parameters: Parameters? = null,
+    var headers: Map<String, List<String>>? = null,
+    var origin: String? = null,
+    var url: String? = null,
+    var `user-agent`: String? = null,
+    var data: String? = null,
+    var files: Map<String, PartData.FileItem>? = null,
+    var form: Parameters? = null,
+    val json: Map<String, Any>? = null,
+    var gzipped: Boolean? = null,
+    var deflated: Boolean? = null,
+    var method: String? = null,
+    var cookies: Map<String, String>? = null
 )
 
 fun HttpBinResponse.clear() {
@@ -45,4 +45,3 @@ suspend fun ApplicationCall.sendHttpBinResponse(configure: suspend HttpBinRespon
     response.configure()
     respond(response)
 }
-

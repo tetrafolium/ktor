@@ -10,7 +10,7 @@ enum class TLSVersion(val code: Int) {
         private val byOrdinal = values()
 
         fun byCode(code: Int): TLSVersion = when (code) {
-            in 0x0300 .. 0x0303 -> byOrdinal[code - 0x0300]
+            in 0x0300..0x0303 -> byOrdinal[code - 0x0300]
             else -> throw IllegalArgumentException("Invalid TLS version code $code")
         }
     }

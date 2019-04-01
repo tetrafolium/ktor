@@ -5,16 +5,16 @@ import java.time.temporal.*
 import java.util.*
 
 data class Cookie(
-        val name: String,
-        val value: String,
-        val encoding: CookieEncoding = CookieEncoding.URI_ENCODING,
-        val maxAge: Int = 0,
-        val expires: Temporal? = null,
-        val domain: String? = null,
-        val path: String? = null,
-        val secure: Boolean = false,
-        val httpOnly: Boolean = false,
-        val extensions: Map<String, String?> = emptyMap()
+    val name: String,
+    val value: String,
+    val encoding: CookieEncoding = CookieEncoding.URI_ENCODING,
+    val maxAge: Int = 0,
+    val expires: Temporal? = null,
+    val domain: String? = null,
+    val path: String? = null,
+    val secure: Boolean = false,
+    val httpOnly: Boolean = false,
+    val extensions: Map<String, String?> = emptyMap()
 )
 
 enum class CookieEncoding {
@@ -72,16 +72,17 @@ fun renderSetCookieHeader(cookie: Cookie): String = with(cookie) {
     )
 }
 
-fun renderSetCookieHeader(name: String,
-                                 value: String,
-                                 encoding: CookieEncoding = CookieEncoding.URI_ENCODING,
-                                 maxAge: Int = 0,
-                                 expires: Temporal? = null,
-                                 domain: String? = null,
-                                 path: String? = null,
-                                 secure: Boolean = false,
-                                 httpOnly: Boolean = false,
-                                 extensions: Map<String, String?> = emptyMap()): String =
+fun renderSetCookieHeader(
+    name: String,
+    value: String,
+    encoding: CookieEncoding = CookieEncoding.URI_ENCODING,
+    maxAge: Int = 0,
+    expires: Temporal? = null,
+    domain: String? = null,
+    path: String? = null,
+    secure: Boolean = false,
+    httpOnly: Boolean = false,
+    extensions: Map<String, String?> = emptyMap()): String =
         (listOf(
                 cookiePart(name.assertCookieName(), value, encoding),
                 cookiePartUnencoded("Max-Age", if (maxAge > 0) maxAge else null),
@@ -137,7 +138,6 @@ private inline fun cookiePart(name: String, value: Any?, encoding: CookieEncodin
 @Suppress("NOTHING_TO_INLINE")
 private inline fun cookiePartUnencoded(name: String, value: Any?) =
         if (value != null) "$name=$value" else ""
-
 
 @Suppress("NOTHING_TO_INLINE")
 private inline fun cookiePartFlag(name: String, value: Boolean) =

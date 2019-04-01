@@ -106,7 +106,6 @@ fun Application.main() {
             "test" to decodeBase64("VltM4nfheqcJSyH887H+4NEOm2tDuKCl83p5axYXlF0=") // sha256 for "test"
     ))
 
-
     routing {
         get("/get") {
             call.sendHttpBinResponse()
@@ -139,7 +138,6 @@ fun Application.main() {
                 resource(path, "static/$filename")
             }
         }
-
 
         get("/headers") {
             call.sendHttpBinResponse {
@@ -349,12 +347,10 @@ fun Application.main() {
                 call.respond(error)
             }
         }
-
     }
 }
 
-
-fun Route.handleRequestWithBodyFor(method: HttpMethod): Unit {
+fun Route.handleRequestWithBodyFor(method: HttpMethod) {
     contentType(ContentType.MultiPart.FormData) {
         method(method) {
             handle {

@@ -18,7 +18,6 @@ interface Headers : StringValues {
          */
         inline fun build(builder: HeadersBuilder.() -> Unit): Headers = HeadersBuilder().apply(builder).build()
     }
-
 }
 
 class HeadersBuilder(size: Int = 8) : StringValuesBuilder(true, size) {
@@ -44,5 +43,4 @@ fun headersOf(vararg pairs: Pair<String, List<String>>): Headers = HeadersImpl(p
 
 class HeadersImpl(values: Map<String, List<String>> = emptyMap()) : Headers, StringValuesImpl(true, values)
 class HeadersSingleImpl(name: String, values: List<String>) : Headers, StringValuesSingleImpl(true, name, values)
-
 

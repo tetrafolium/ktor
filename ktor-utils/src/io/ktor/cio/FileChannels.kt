@@ -10,9 +10,9 @@ import java.nio.file.*
 import kotlin.coroutines.experimental.*
 
 fun File.readChannel(
-        start: Long = 0,
-        endInclusive: Long = -1,
-        coroutineContext: CoroutineContext = Unconfined
+    start: Long = 0,
+    endInclusive: Long = -1,
+    coroutineContext: CoroutineContext = Unconfined
 ): ByteReadChannel {
     val fileLength = length()
     val file = RandomAccessFile(this@readChannel, "r")

@@ -1,6 +1,5 @@
 package io.ktor.network.tls
 
-
 class TLSRecordHeader {
     var type: TLSRecordType = TLSRecordType.Handshake
     var version: TLSVersion = TLSVersion.TLS12

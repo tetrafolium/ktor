@@ -105,4 +105,3 @@ object HttpHeaders {
     val XForwardedProto = "X-Forwarded-Proto"
     val XForwardedFor = "X-Forwarded-For"
 }
-

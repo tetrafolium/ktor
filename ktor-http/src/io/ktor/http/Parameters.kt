@@ -18,7 +18,6 @@ interface Parameters : StringValues {
          */
         inline fun build(builder: ParametersBuilder.() -> Unit): Parameters = ParametersBuilder().apply(builder).build()
     }
-
 }
 
 class ParametersBuilder(size: Int = 8) : StringValuesBuilder(true, size) {

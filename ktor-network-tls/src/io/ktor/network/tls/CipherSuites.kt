@@ -1,17 +1,23 @@
 package io.ktor.network.tls
 
-
 enum class SecretExchangeType {
     RSA,
     DiffieHellman
 }
 
-class CipherSuite(val code: Short,
-                  val name: String, val openSSLName: String,
-                  val exchangeType: SecretExchangeType,
-                  val jdkCipherName: String, val keyStrength: Int, val fixedIvLength: Int, val ivLength: Int, val cipherTagSizeInBytes: Int,
-                  val macName: String, val macStrength: Int,
-                  val hashName: String
+class CipherSuite(
+    val code: Short,
+    val name: String,
+    val openSSLName: String,
+    val exchangeType: SecretExchangeType,
+    val jdkCipherName: String,
+    val keyStrength: Int,
+    val fixedIvLength: Int,
+    val ivLength: Int,
+    val cipherTagSizeInBytes: Int,
+    val macName: String,
+    val macStrength: Int,
+    val hashName: String
 ) {
     val keyStrengthInBytes = keyStrength / 8
     val macStrengthInBytes = macStrength / 8

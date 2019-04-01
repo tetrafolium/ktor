@@ -76,4 +76,3 @@ data class HttpStatusCode(val value: Int, val description: String) {
         }
     }
 }
-

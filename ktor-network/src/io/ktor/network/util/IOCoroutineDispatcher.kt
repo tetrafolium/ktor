@@ -58,9 +58,10 @@ class IOCoroutineDispatcher(private val nThreads: Int) : CoroutineDispatcher(), 
     }
 
     private class IOThread(
-            private val number: Int,
-            private val tasks: LockFreeLinkedListHead,
-            dispatcherThreadGroup: ThreadGroup) : Thread(dispatcherThreadGroup, "io-thread-$number") {
+        private val number: Int,
+        private val tasks: LockFreeLinkedListHead,
+        dispatcherThreadGroup: ThreadGroup
+    ) : Thread(dispatcherThreadGroup, "io-thread-$number") {
 
         @Volatile
         private var cont: Continuation<Unit>? = null

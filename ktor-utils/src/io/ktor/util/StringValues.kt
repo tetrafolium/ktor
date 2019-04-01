@@ -38,7 +38,6 @@ interface StringValues {
      */
     fun getAll(name: String): List<String>?
 
-
     /**
      * Gets all names from the map
      */

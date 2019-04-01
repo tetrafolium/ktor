@@ -24,7 +24,6 @@ fun Application.basicAuthWithLdap() {
                             UserIdPrincipal(it.name)
                         } else null
                     }
-
                 }
             }
 

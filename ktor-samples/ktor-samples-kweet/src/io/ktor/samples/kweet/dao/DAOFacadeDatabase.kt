@@ -19,8 +19,7 @@ interface DAOFacade : Closeable {
     fun latest(count: Int = 10): List<Int>
 }
 
-
-class DAOFacadeDatabase(val db: Database = Database.connect("jdbc:h2:mem:test", driver = "org.h2.Driver")): DAOFacade {
+class DAOFacadeDatabase(val db: Database = Database.connect("jdbc:h2:mem:test", driver = "org.h2.Driver")) : DAOFacade {
     constructor(dir: File) : this(Database.connect("jdbc:h2:file:${dir.canonicalFile.absolutePath}", driver = "org.h2.Driver"))
 
     override fun init() {
