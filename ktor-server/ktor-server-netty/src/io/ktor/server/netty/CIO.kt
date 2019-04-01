@@ -48,9 +48,10 @@ internal object NettyDispatcher : CoroutineDispatcher() {
     object CurrentContextKey : CoroutineContext.Key<CurrentContext>
 }
 
-private class CoroutineListener<T, F : Future<T>>(private val future: F,
-                                                  private val continuation: CancellableContinuation<T>,
-                                                  private val exception: (Throwable, Continuation<T>) -> Unit
+private class CoroutineListener<T, F : Future<T>>(
+    private val future: F,
+    private val continuation: CancellableContinuation<T>,
+    private val exception: (Throwable, Continuation<T>) -> Unit
 ) : GenericFutureListener<F>, DisposableHandle {
     init {
         continuation.disposeOnCompletion(this)

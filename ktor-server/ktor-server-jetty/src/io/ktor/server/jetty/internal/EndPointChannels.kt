@@ -11,7 +11,6 @@ import java.nio.channels.*
 import java.util.concurrent.atomic.*
 import kotlin.coroutines.experimental.*
 
-
 private const val JETTY_WEBSOCKET_POOL_SIZE = 2000
 
 private object JettyWebSocketPool : DefaultPool<ByteBuffer>(JETTY_WEBSOCKET_POOL_SIZE) {
@@ -81,8 +80,8 @@ internal class EndPointReader(endpoint: EndPoint, context: CoroutineContext, pri
 }
 
 internal fun endPointWriter(
-        endPoint: EndPoint,
-        pool: ObjectPool<ByteBuffer> = JettyWebSocketPool
+    endPoint: EndPoint,
+    pool: ObjectPool<ByteBuffer> = JettyWebSocketPool
 ): ByteWriteChannel = reader(Unconfined, autoFlush = true) {
     pool.use { buffer ->
         endPoint.use { endPoint ->

@@ -60,7 +60,6 @@ class NettyApplicationEngine(environment: ApplicationEngineEnvironment, configur
     private val dispatcherWithShutdown = DispatcherWithShutdown(NettyDispatcher)
     private val engineDispatcherWithShutdown = DispatcherWithShutdown(workerEventGroup.asCoroutineDispatcher())
 
-
     private var channels: List<Channel>? = null
     private val bootstraps = environment.connectors.map { connector ->
         ServerBootstrap().apply {

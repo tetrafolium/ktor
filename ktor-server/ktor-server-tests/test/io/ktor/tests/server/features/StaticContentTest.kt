@@ -239,7 +239,6 @@ class StaticContentTest {
             assertTrue(result.requestHandled)
         }
     }
-
 }
 
 private fun String.replaceSeparators() = replace("/", File.separator)

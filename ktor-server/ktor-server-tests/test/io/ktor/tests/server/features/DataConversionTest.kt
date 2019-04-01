@@ -15,7 +15,6 @@ class DataConversionTest {
         assertEquals(1, id)
     }
 
-
     private val expectedList = listOf(1, 2)
 
     @Test

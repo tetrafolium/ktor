@@ -15,10 +15,10 @@ import kotlinx.coroutines.experimental.io.*
 import java.net.*
 
 internal class NettyHttp2ApplicationRequest(
-        call: ApplicationCall,
-        context: ChannelHandlerContext,
-        val nettyHeaders: Http2Headers,
-        val contentByteChannel: ByteChannel = ByteChannel())
+    call: ApplicationCall,
+    context: ChannelHandlerContext,
+    val nettyHeaders: Http2Headers,
+    val contentByteChannel: ByteChannel = ByteChannel())
     : NettyApplicationRequest(call, context, contentByteChannel, nettyHeaders[":path"]?.toString() ?: "/", keepAlive = true) {
 
     override val headers: Headers by lazy { Headers.build { nettyHeaders.forEach { append(it.key.toString(), it.value.toString()) } } }
@@ -44,4 +44,3 @@ internal class NettyHttp2ApplicationRequest(
         return HttpPostMultipartRequestDecoder(request)
     }
 }
-

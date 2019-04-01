@@ -20,7 +20,6 @@ class HttpsRedirectFeatureTest {
                 }
             }
 
-
             handleRequest(HttpMethod.Get, "/").let { call ->
                 assertEquals(HttpStatusCode.MovedPermanently, call.response.status())
                 assertEquals("https://localhost/", call.response.headers[HttpHeaders.Location])
@@ -38,7 +37,6 @@ class HttpsRedirectFeatureTest {
                     call.respond("ok")
                 }
             }
-
 
             handleRequest(HttpMethod.Get, "/", {
                 addHeader(HttpHeaders.XForwardedProto, "https")

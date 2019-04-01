@@ -16,14 +16,16 @@ import java.security.*
 import java.security.cert.*
 import kotlin.coroutines.experimental.*
 
-internal class NettyChannelInitializer(private val enginePipeline: EnginePipeline,
-                                       private val environment: ApplicationEngineEnvironment,
-                                       private val callEventGroup: EventExecutorGroup,
-                                       private val engineContext: CoroutineContext,
-                                       private val userContext: CoroutineContext,
-                                       private val connector: EngineConnectorConfig,
-                                       private val requestQueueLimit: Int,
-                                       private val responseWriteTimeout: Int) : ChannelInitializer<SocketChannel>() {
+internal class NettyChannelInitializer(
+    private val enginePipeline: EnginePipeline,
+    private val environment: ApplicationEngineEnvironment,
+    private val callEventGroup: EventExecutorGroup,
+    private val engineContext: CoroutineContext,
+    private val userContext: CoroutineContext,
+    private val connector: EngineConnectorConfig,
+    private val requestQueueLimit: Int,
+    private val responseWriteTimeout: Int
+) : ChannelInitializer<SocketChannel>() {
     private var sslContext: SslContext? = null
 
     init {
@@ -91,7 +93,6 @@ internal class NettyChannelInitializer(private val enginePipeline: EnginePipelin
                     addLast("codec", HttpServerCodec())
                     addLast("timeout", WriteTimeoutHandler(responseWriteTimeout))
                     addLast("http1", handler)
-
                 }
 
                 pipeline.context("codec").fireChannelActive()

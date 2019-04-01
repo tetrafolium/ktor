@@ -63,7 +63,6 @@ class RoutingProcessingTest {
                 assertEquals("john", username)
             }
         }
-
     }
 
     @Test fun `routing on GET user with surrounded parameter`() = withTestApplication {
@@ -82,7 +81,6 @@ class RoutingProcessingTest {
                 assertEquals("john", username)
             }
         }
-
     }
 
     @Test fun `verify most specific selected`() = withTestApplication {
@@ -301,7 +299,6 @@ class RoutingProcessingTest {
             assertTrue(rootIntercepted, "should have processed root interceptor")
             assertNotNull(instance)
         }
-
     }
 
     @Test fun `verify accept header processing`() = withTestApplication {

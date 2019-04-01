@@ -94,6 +94,5 @@ class RoutingBuildTest {
                 assertTrue(entry.children[0].children[0].selector is PathSegmentTailcardRouteSelector)
             }
         }
-
     }
 }

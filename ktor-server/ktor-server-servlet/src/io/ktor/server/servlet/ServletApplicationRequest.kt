@@ -7,8 +7,10 @@ import io.ktor.server.engine.*
 import io.ktor.util.*
 import javax.servlet.http.*
 
-abstract class ServletApplicationRequest(call: ApplicationCall,
-                                val servletRequest: HttpServletRequest) : BaseApplicationRequest(call) {
+abstract class ServletApplicationRequest(
+    call: ApplicationCall,
+    val servletRequest: HttpServletRequest
+) : BaseApplicationRequest(call) {
 
     override val local: RequestConnectionPoint = ServletConnectionPoint(servletRequest)
 
@@ -19,4 +21,3 @@ abstract class ServletApplicationRequest(call: ApplicationCall,
     override val headers: Headers = ServletApplicationRequestHeaders(servletRequest)
     override val cookies: RequestCookies = ServletApplicationRequestCookies(servletRequest, this)
 }
-

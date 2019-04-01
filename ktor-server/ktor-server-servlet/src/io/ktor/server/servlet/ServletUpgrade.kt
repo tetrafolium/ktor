@@ -6,19 +6,23 @@ import javax.servlet.http.*
 import kotlin.coroutines.experimental.*
 
 interface ServletUpgrade {
-    suspend fun performUpgrade(upgrade: OutgoingContent.ProtocolUpgrade,
-                               servletRequest: HttpServletRequest,
-                               servletResponse: HttpServletResponse,
-                               engineContext: CoroutineContext,
-                               userContext: CoroutineContext)
+    suspend fun performUpgrade(
+        upgrade: OutgoingContent.ProtocolUpgrade,
+        servletRequest: HttpServletRequest,
+        servletResponse: HttpServletResponse,
+        engineContext: CoroutineContext,
+        userContext: CoroutineContext
+    )
 }
 
 object DefaultServletUpgrade : ServletUpgrade {
-    override suspend fun performUpgrade(upgrade: OutgoingContent.ProtocolUpgrade,
-                                        servletRequest: HttpServletRequest,
-                                        servletResponse: HttpServletResponse,
-                                        engineContext: CoroutineContext,
-                                        userContext: CoroutineContext) {
+    override suspend fun performUpgrade(
+        upgrade: OutgoingContent.ProtocolUpgrade,
+        servletRequest: HttpServletRequest,
+        servletResponse: HttpServletResponse,
+        engineContext: CoroutineContext,
+        userContext: CoroutineContext
+    ) {
 
         val handler = servletRequest.upgrade(ServletUpgradeHandler::class.java)
         handler.up = UpgradeRequest(servletResponse, upgrade, engineContext, userContext)
@@ -27,10 +31,12 @@ object DefaultServletUpgrade : ServletUpgrade {
 
 // the following types need to be public as they are accessed through reflection
 
-class UpgradeRequest(val response: HttpServletResponse,
-                     val upgradeMessage: OutgoingContent.ProtocolUpgrade,
-                     val engineContext: CoroutineContext,
-                     val userContext: CoroutineContext)
+class UpgradeRequest(
+    val response: HttpServletResponse,
+    val upgradeMessage: OutgoingContent.ProtocolUpgrade,
+    val engineContext: CoroutineContext,
+    val userContext: CoroutineContext
+)
 
 class ServletUpgradeHandler : HttpUpgradeHandler {
     @Volatile

@@ -666,7 +666,6 @@ abstract class EngineTestSuite<TEngine : ApplicationEngine, TConfiguration : App
             }
         }
 
-
         withUrl("/", {
             header(HttpHeaders.Connection, "keep-alive")
         }) {
@@ -968,7 +967,7 @@ abstract class EngineTestSuite<TEngine : ApplicationEngine, TConfiguration : App
             get("/{index}") {
                 val index = call.parameters["index"]!!.toInt()
                 call.respondWrite {
-                    //print("[$index] ")
+                    // print("[$index] ")
                     try {
                         append("OK:$index\n")
                     } finally {
@@ -987,11 +986,11 @@ abstract class EngineTestSuite<TEngine : ApplicationEngine, TConfiguration : App
             thread {
                 try {
                     withUrl("/$i") {
-                        //setRequestProperty("Connection", "close")
+                        // setRequestProperty("Connection", "close")
                         content.toInputStream().reader().use { reader ->
                             val firstByte = reader.read()
                             if (firstByte == -1) {
-                                //println("Premature end of response stream at iteration $i")
+                                // println("Premature end of response stream at iteration $i")
                                 kotlin.test.fail("Premature end of response stream at iteration $i")
                             } else {
                                 assertEquals('O', firstByte.toChar())
@@ -1172,7 +1171,7 @@ abstract class EngineTestSuite<TEngine : ApplicationEngine, TConfiguration : App
                 e.submit(Callable<String> {
                     try {
                         URL("http://localhost:$port/").openConnection().inputStream.bufferedReader().readLine().apply {
-                            //println("$number says $this")
+                            // println("$number says $this")
                         } ?: "<empty>"
                     } catch (t: Throwable) {
                         "error: ${t.message}"
@@ -1435,7 +1434,7 @@ abstract class EngineTestSuite<TEngine : ApplicationEngine, TConfiguration : App
                                 append(HttpHeaders.ContentLength, doubleSize)
                             }
 
-                        suspend override fun writeTo(channel: ByteWriteChannel) {
+                        override suspend fun writeTo(channel: ByteWriteChannel) {
                             channel.writeFully(data)
                             channel.close()
                         }
@@ -1450,7 +1449,7 @@ abstract class EngineTestSuite<TEngine : ApplicationEngine, TConfiguration : App
                                 append(HttpHeaders.ContentLength, halfSize)
                             }
 
-                        suspend override fun writeTo(channel: ByteWriteChannel) {
+                        override suspend fun writeTo(channel: ByteWriteChannel) {
                             channel.writeFully(data)
                             channel.close()
                         }
@@ -1506,6 +1505,6 @@ abstract class EngineTestSuite<TEngine : ApplicationEngine, TConfiguration : App
 
     companion object {
         val classesDir = "build/classes/kotlin/main"
-        val coreClassesDir = "ktor-server/ktor-server-core/${classesDir}"
+        val coreClassesDir = "ktor-server/ktor-server-core/$classesDir"
     }
 }

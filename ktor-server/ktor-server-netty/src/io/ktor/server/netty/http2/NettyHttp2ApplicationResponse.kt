@@ -8,12 +8,13 @@ import io.netty.channel.*
 import io.netty.handler.codec.http2.*
 import kotlin.coroutines.experimental.*
 
-internal class NettyHttp2ApplicationResponse(call: NettyApplicationCall,
-                                             val handler: NettyHttp2Handler,
-                                             context: ChannelHandlerContext,
-                                             engineContext: CoroutineContext,
-                                             userContext: CoroutineContext
-                                             )
+internal class NettyHttp2ApplicationResponse(
+    call: NettyApplicationCall,
+    val handler: NettyHttp2Handler,
+    context: ChannelHandlerContext,
+    engineContext: CoroutineContext,
+    userContext: CoroutineContext
+)
     : NettyApplicationResponse(call, context, engineContext, userContext) {
 
     private val responseHeaders = DefaultHttp2Headers().apply {

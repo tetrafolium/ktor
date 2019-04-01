@@ -41,7 +41,6 @@ class ETagsTest {
         assertEquals("tag1", result.response.headers[HttpHeaders.ETag])
     }
 
-
     @Test
     fun testIfMatchConditionAccepted() = withConditionalApplication {
         val result = handleRequest {
@@ -153,7 +152,6 @@ class ETagsTest {
         assertTrue(result.requestHandled)
         assertEquals(HttpStatusCode.PreconditionFailed, result.response.status())
     }
-
 }
 
 class LastModifiedTest {
@@ -270,10 +268,9 @@ class LastModifiedTest {
     }
 }
 
-
 class LastModifiedVersionTest {
-    private fun temporaryDefaultTimezone(timeZone : TimeZone, block : () -> Unit) {
-        val originalTimeZone : TimeZone = TimeZone.getDefault()
+    private fun temporaryDefaultTimezone(timeZone: TimeZone, block: () -> Unit) {
+        val originalTimeZone: TimeZone = TimeZone.getDefault()
         TimeZone.setDefault(timeZone)
         try {
             block()
@@ -282,7 +279,7 @@ class LastModifiedVersionTest {
         }
     }
 
-    private fun checkLastModifiedHeaderIsIndependentOfLocalTimezone(constructLastModifiedVersion : (Date) -> LastModifiedVersion) {
+    private fun checkLastModifiedHeaderIsIndependentOfLocalTimezone(constructLastModifiedVersion: (Date) -> LastModifiedVersion) {
         // setup: any non-zero-offset-Timezone will do
         temporaryDefaultTimezone(TimeZone.getTimeZone("GMT+08:00")) {
 
@@ -290,7 +287,7 @@ class LastModifiedVersionTest {
             assertTrue(TimeZone.getDefault().rawOffset != 0, "invalid test setup - local timezone is GMT: ${TimeZone.getDefault()}")
 
             // setup: last modified for file
-            val expectedLastModified : Date = SimpleDateFormat("yyyy-MM-dd HH:mm:ss z").parse("2018-03-04 15:12:23 GMT")
+            val expectedLastModified: Date = SimpleDateFormat("yyyy-MM-dd HH:mm:ss z").parse("2018-03-04 15:12:23 GMT")
 
             // setup: object to test
             val lastModifiedVersion = constructLastModifiedVersion(expectedLastModified)
@@ -308,12 +305,12 @@ class LastModifiedVersionTest {
 
     @Test
     fun lastModifiedHeaderFromDateIsIndependentOfLocalTimezone() {
-        checkLastModifiedHeaderIsIndependentOfLocalTimezone { input : Date -> LastModifiedVersion(input) }
+        checkLastModifiedHeaderIsIndependentOfLocalTimezone { input: Date -> LastModifiedVersion(input) }
     }
 
     @Test
     fun lastModifiedHeaderFromLocalDateTimeIsIndependentOfLocalTimezone() {
-        checkLastModifiedHeaderIsIndependentOfLocalTimezone { input : Date ->
+        checkLastModifiedHeaderIsIndependentOfLocalTimezone { input: Date ->
             LastModifiedVersion(ZonedDateTime.ofInstant(input.toInstant(), ZoneId.systemDefault()))
         }
     }
@@ -323,9 +320,9 @@ class LastModifiedVersionTest {
 
     @Test
     fun lastModifiedHeaderFromFileTimeIsIndependentOfLocalTimezone() {
-        checkLastModifiedHeaderIsIndependentOfLocalTimezone { input : Date ->
+        checkLastModifiedHeaderIsIndependentOfLocalTimezone { input: Date ->
             // setup: create file
-            val file : File = temporaryFolder.newFile("foo.txt").apply {
+            val file: File = temporaryFolder.newFile("foo.txt").apply {
                 setLastModified(input.time)
             }
 

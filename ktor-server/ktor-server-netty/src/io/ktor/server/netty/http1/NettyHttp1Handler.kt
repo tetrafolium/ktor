@@ -12,12 +12,14 @@ import kotlinx.coroutines.experimental.io.*
 import kotlin.coroutines.experimental.*
 
 @ChannelHandler.Sharable
-internal class NettyHttp1Handler(private val enginePipeline: EnginePipeline,
-                                 private val environment: ApplicationEngineEnvironment,
-                                 private val callEventGroup: EventExecutorGroup,
-                                 private val engineContext: CoroutineContext,
-                                 private val userContext: CoroutineContext,
-                                 private val requestQueue: NettyRequestQueue) : ChannelInboundHandlerAdapter() {
+internal class NettyHttp1Handler(
+    private val enginePipeline: EnginePipeline,
+    private val environment: ApplicationEngineEnvironment,
+    private val callEventGroup: EventExecutorGroup,
+    private val engineContext: CoroutineContext,
+    private val userContext: CoroutineContext,
+    private val requestQueue: NettyRequestQueue
+) : ChannelInboundHandlerAdapter() {
     private var configured = false
 
     override fun channelRead(ctx: ChannelHandlerContext, msg: Any) {
@@ -83,4 +85,3 @@ internal class NettyHttp1Handler(private val enginePipeline: EnginePipeline,
         ctx.close()
     }
 }
-

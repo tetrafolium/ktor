@@ -50,7 +50,8 @@ class TestApplicationEngine(environment: ApplicationEngineEnvironment = createTe
     }.apply { execute(this) }
 
     fun handleWebSocketConversation(
-        uri: String, setup: TestApplicationRequest.() -> Unit = {},
+        uri: String,
+        setup: TestApplicationRequest.() -> Unit = {},
         callback: suspend TestApplicationCall.(incoming: ReceiveChannel<Frame>, outgoing: SendChannel<Frame>) -> Unit
     ): TestApplicationCall {
         val bc = ByteChannel(true)

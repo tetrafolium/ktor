@@ -16,10 +16,12 @@ import java.nio.channels.*
 import kotlin.coroutines.experimental.*
 
 @ChannelHandler.Sharable
-internal class NettyHttp2Handler(private val enginePipeline: EnginePipeline,
-                                 private val application: Application,
-                                 private val callEventGroup: EventExecutorGroup,
-                                 private val userCoroutineContext: CoroutineContext) : ChannelInboundHandlerAdapter() {
+internal class NettyHttp2Handler(
+    private val enginePipeline: EnginePipeline,
+    private val application: Application,
+    private val callEventGroup: EventExecutorGroup,
+    private val userCoroutineContext: CoroutineContext
+) : ChannelInboundHandlerAdapter() {
     override fun channelRead(context: ChannelHandlerContext, message: Any?) {
         when (message) {
             is Http2HeadersFrame -> {
@@ -74,7 +76,6 @@ internal class NettyHttp2Handler(private val enginePipeline: EnginePipeline,
         val streamId = channel.stream().id()
         val codec = channel.parent().pipeline().get(Http2MultiplexCodec::class.java)!!
         val connection = codec.connection()
-
 
         val rootContext = channel.parent().pipeline().lastContext()
 

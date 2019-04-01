@@ -28,7 +28,8 @@ open class AsyncServletApplicationCall(
 }
 
 class AsyncServletApplicationRequest(
-    call: ApplicationCall, servletRequest: HttpServletRequest
+    call: ApplicationCall,
+    servletRequest: HttpServletRequest
 ) : ServletApplicationRequest(call, servletRequest) {
 
     private val copyJob by lazy { servletReader(servletRequest.inputStream) }

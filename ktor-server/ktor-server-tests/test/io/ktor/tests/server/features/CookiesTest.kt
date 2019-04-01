@@ -205,7 +205,6 @@ class DQuotesEncodingTest {
     }
 }
 
-
 class URIEncodingTest {
     @test fun `no bad characters`() {
         testEncode("abc", "abc")

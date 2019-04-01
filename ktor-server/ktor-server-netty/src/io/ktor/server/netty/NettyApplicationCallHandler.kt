@@ -7,8 +7,10 @@ import io.netty.channel.*
 import kotlinx.coroutines.experimental.*
 import kotlin.coroutines.experimental.*
 
-internal class NettyApplicationCallHandler(userCoroutineContext: CoroutineContext,
-                                           private val enginePipeline: EnginePipeline) : ChannelInboundHandlerAdapter() {
+internal class NettyApplicationCallHandler(
+    userCoroutineContext: CoroutineContext,
+    private val enginePipeline: EnginePipeline
+) : ChannelInboundHandlerAdapter() {
     private val handleCoroutineContext = userCoroutineContext + CoroutineName("call-handler")
 
     override fun channelRead(ctx: ChannelHandlerContext, msg: Any) {

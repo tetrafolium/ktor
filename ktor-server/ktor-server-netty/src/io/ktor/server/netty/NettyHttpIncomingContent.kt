@@ -6,7 +6,7 @@ import kotlinx.coroutines.experimental.io.*
 import java.util.concurrent.atomic.*
 
 internal class NettyHttpIncomingContent internal constructor(
-        val request: NettyApplicationRequest
+    val request: NettyApplicationRequest
 ) : IncomingContent {
 
     override val headers: Headers = request.headers

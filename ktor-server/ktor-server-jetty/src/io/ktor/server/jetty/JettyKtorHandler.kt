@@ -49,7 +49,7 @@ internal class JettyKtorHandler(val environment: ApplicationEngineEnvironment, p
                     request.asyncContext?.complete()
                 }
             }
-        } catch(ex: Throwable) {
+        } catch (ex: Throwable) {
             environment.log.error("Application ${environment.application::class.java} cannot fulfill the request", ex)
 
             launch(dispatcher) {

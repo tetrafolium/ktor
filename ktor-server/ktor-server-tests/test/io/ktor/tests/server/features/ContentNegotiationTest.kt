@@ -30,7 +30,7 @@ class ContentNegotiationTest {
         }
     }
 
-    private val textContentConverter =  object : ContentConverter {
+    private val textContentConverter = object : ContentConverter {
         override suspend fun convertForSend(context: PipelineContext<Any, ApplicationCall>, contentType: ContentType, value: Any): Any? {
             if (value !is Wrapper) return null
             return TextContent(value.value, contentType.withCharset(context.call.suitableCharset()))
@@ -60,7 +60,6 @@ class ContentNegotiationTest {
         }
 
         handleRequest(HttpMethod.Get, "/") {
-
         }.let { call ->
             assertEquals(HttpStatusCode.OK, call.response.status())
             assertEquals(ContentType.Text.Plain, call.response.contentType().withoutParameters())
@@ -161,7 +160,7 @@ class ContentNegotiationTest {
 
             // Content-Type pattern
             handleRequest(HttpMethod.Get, "/") {
-                addHeader(HttpHeaders.Accept, ContentType(customContentType.contentType, "*").toString() )
+                addHeader(HttpHeaders.Accept, ContentType(customContentType.contentType, "*").toString())
             }.let { call ->
                 assertEquals(HttpStatusCode.OK, call.response.status())
                 assertEquals(customContentType, call.response.contentType().withoutParameters())

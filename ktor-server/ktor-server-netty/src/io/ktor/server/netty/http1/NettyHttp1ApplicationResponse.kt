@@ -10,11 +10,13 @@ import io.netty.handler.codec.http.*
 import kotlinx.coroutines.experimental.io.*
 import kotlin.coroutines.experimental.*
 
-internal class NettyHttp1ApplicationResponse(call: NettyApplicationCall,
-                                             context: ChannelHandlerContext,
-                                             engineContext: CoroutineContext,
-                                             userContext: CoroutineContext,
-                                             val protocol: HttpVersion)
+internal class NettyHttp1ApplicationResponse(
+    call: NettyApplicationCall,
+    context: ChannelHandlerContext,
+    engineContext: CoroutineContext,
+    userContext: CoroutineContext,
+    val protocol: HttpVersion
+)
 
     : NettyApplicationResponse(call, context, engineContext, userContext) {
 

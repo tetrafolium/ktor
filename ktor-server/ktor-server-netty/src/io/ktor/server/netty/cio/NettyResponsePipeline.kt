@@ -10,9 +10,10 @@ import io.netty.handler.codec.http2.*
 import kotlinx.coroutines.experimental.*
 import java.io.*
 
-internal class NettyResponsePipeline(private val dst: ChannelHandlerContext,
-                                     initialEncapsulation: WriterEncapsulation,
-                                     private val requestQueue: NettyRequestQueue
+internal class NettyResponsePipeline(
+    private val dst: ChannelHandlerContext,
+    initialEncapsulation: WriterEncapsulation,
+    private val requestQueue: NettyRequestQueue
 ) {
     @Volatile
     private var cancellation: Throwable? = null

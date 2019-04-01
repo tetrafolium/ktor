@@ -30,7 +30,6 @@ class CallLoggingTest {
         log = logger
     }
 
-
     @Before
     fun setup() {
         messages = ArrayList()

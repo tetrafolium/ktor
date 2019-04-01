@@ -8,8 +8,10 @@ import kotlinx.coroutines.experimental.*
 import kotlinx.coroutines.experimental.channels.Channel
 import kotlinx.coroutines.experimental.io.*
 
-internal class RequestBodyHandler(val context: ChannelHandlerContext,
-                                  private val requestQueue: NettyRequestQueue) : ChannelInboundHandlerAdapter() {
+internal class RequestBodyHandler(
+    val context: ChannelHandlerContext,
+    private val requestQueue: NettyRequestQueue
+) : ChannelInboundHandlerAdapter() {
     private val queue = Channel<Any>(Channel.UNLIMITED)
     private object Upgrade
 

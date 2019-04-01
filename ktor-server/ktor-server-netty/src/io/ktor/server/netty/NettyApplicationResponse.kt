@@ -11,10 +11,12 @@ import kotlinx.coroutines.experimental.*
 import kotlinx.coroutines.experimental.io.*
 import kotlin.coroutines.experimental.*
 
-internal abstract class NettyApplicationResponse(call: NettyApplicationCall,
-                                                 protected val context: ChannelHandlerContext,
-                                                 protected val engineContext: CoroutineContext,
-                                                 protected val userContext: CoroutineContext) : BaseApplicationResponse(call) {
+internal abstract class NettyApplicationResponse(
+    call: NettyApplicationCall,
+    protected val context: ChannelHandlerContext,
+    protected val engineContext: CoroutineContext,
+    protected val userContext: CoroutineContext
+) : BaseApplicationResponse(call) {
 
     internal val responseMessage = CompletableDeferred<Any>()
 

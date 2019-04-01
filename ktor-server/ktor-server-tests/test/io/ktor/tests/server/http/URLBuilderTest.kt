@@ -65,7 +65,7 @@ class URLBuilderTest {
 
     @Test
     fun testUserCredentials() {
-        assertEquals("http://user:pass@localhost/", url { user = "user"; password= "pass" })
+        assertEquals("http://user:pass@localhost/", url { user = "user"; password = "pass" })
         assertEquals("http://user%20name:pass+@localhost/", url { user = "user name"; password = "pass+" })
     }
 

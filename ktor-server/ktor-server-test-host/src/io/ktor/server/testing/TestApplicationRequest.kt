@@ -9,10 +9,10 @@ import kotlinx.coroutines.experimental.io.*
 import java.io.*
 
 class TestApplicationRequest(
-        call: ApplicationCall,
-        var method: HttpMethod = HttpMethod.Get,
-        var uri: String = "/",
-        var version: String = "HTTP/1.1"
+    call: ApplicationCall,
+    var method: HttpMethod = HttpMethod.Get,
+    var uri: String = "/",
+    var version: String = "HTTP/1.1"
 ) : BaseApplicationRequest(call) {
 
     var protocol: String = "http"
@@ -58,7 +58,7 @@ class TestApplicationRequest(
         map.getOrPut(name, { arrayListOf() }).add(value)
     }
 
-    override val headers : Headers by lazy(LazyThreadSafetyMode.NONE) {
+    override val headers: Headers by lazy(LazyThreadSafetyMode.NONE) {
         val map = headersMap ?: throw Exception("Headers were already acquired for this request")
         headersMap = null
         Headers.build {

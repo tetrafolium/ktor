@@ -427,7 +427,6 @@ class RoutingResolveTest {
                 assertNull(resolveResult.parameters["name"])
             }
         }
-
     }
 
     @Test
@@ -508,7 +507,6 @@ class RoutingResolveTest {
                 assertEquals(varargEntry, resolveResult.route)
             }
         }
-
     }
 
     @Test
@@ -547,7 +545,6 @@ class RoutingResolveTest {
                 assertEquals(currentEntry, resolveResult.route)
             }
         }
-
     }
 
     @Test
@@ -578,5 +575,4 @@ class RoutingResolveTest {
             }
         }
     }
-
 }

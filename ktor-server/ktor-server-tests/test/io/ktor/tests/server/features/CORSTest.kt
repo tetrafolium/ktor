@@ -26,7 +26,6 @@ class CORSTest {
             }
 
             handleRequest(HttpMethod.Get, "/") {
-
             }.let { call ->
                 assertEquals(HttpStatusCode.OK, call.response.status())
                 assertNull(call.response.headers[HttpHeaders.AccessControlAllowOrigin])

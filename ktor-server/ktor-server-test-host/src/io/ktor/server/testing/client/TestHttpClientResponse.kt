@@ -7,12 +7,11 @@ import kotlinx.coroutines.experimental.*
 import kotlinx.coroutines.experimental.io.*
 import java.util.*
 
-
 class TestHttpClientResponse(
-        override val call: HttpClientCall,
-        override val status: HttpStatusCode,
-        override val headers: Headers,
-        contentData: ByteArray
+    override val call: HttpClientCall,
+    override val status: HttpStatusCode,
+    override val headers: Headers,
+    contentData: ByteArray
 ) : HttpResponse {
     override val requestTime = Date()
     override val responseTime = Date()

@@ -75,7 +75,7 @@ class PartialContentTest {
     @Test
     fun testUnsatisfiableRange() = withRangeApplication { file ->
         handleRequest(HttpMethod.Get, localPath, {
-            addHeader(HttpHeaders.Range, "bytes=1000000-1000004")  // unsatisfiable
+            addHeader(HttpHeaders.Range, "bytes=1000000-1000004") // unsatisfiable
         }).let { result ->
             assertTrue(result.requestHandled)
             assertEquals(HttpStatusCode.RequestedRangeNotSatisfiable.value, result.response.status()?.value)

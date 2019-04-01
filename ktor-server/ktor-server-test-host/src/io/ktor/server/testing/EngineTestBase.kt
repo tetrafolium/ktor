@@ -24,7 +24,6 @@ import java.util.concurrent.*
 import javax.net.ssl.*
 import kotlin.test.*
 
-
 abstract class EngineTestBase<TEngine : ApplicationEngine, TConfiguration : ApplicationEngine.Configuration>(val applicationEngineFactory: ApplicationEngineFactory<TEngine, TConfiguration>) {
     protected val isUnderDebugger = java.lang.management.ManagementFactory.getRuntimeMXBean().inputArguments.orEmpty().any { "-agentlib:jdwp" in it }
     protected var port = findFreePort()

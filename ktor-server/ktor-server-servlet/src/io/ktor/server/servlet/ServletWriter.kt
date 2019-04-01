@@ -9,7 +9,7 @@ import java.io.*
 import javax.servlet.*
 import kotlin.coroutines.experimental.*
 
-internal fun servletWriter(output: ServletOutputStream, parent: CoroutineContext? = null) : ReaderJob {
+internal fun servletWriter(output: ServletOutputStream, parent: CoroutineContext? = null): ReaderJob {
     val writer = ServletWriter(output)
     return reader(if (parent != null) Unconfined + parent else Unconfined, writer.channel) {
         writer.run()

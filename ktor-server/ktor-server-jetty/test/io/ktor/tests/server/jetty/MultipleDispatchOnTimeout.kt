@@ -36,7 +36,6 @@ class MultipleDispatchOnTimeout {
                     Thread.sleep(timeout + 1000)
                     call.respondWrite {
                         write("A ok!")
-
                     }
                 }
             }
@@ -60,5 +59,4 @@ class MultipleDispatchOnTimeout {
             jetty.stop(1, 5, TimeUnit.SECONDS)
         }
     }
-
 }
