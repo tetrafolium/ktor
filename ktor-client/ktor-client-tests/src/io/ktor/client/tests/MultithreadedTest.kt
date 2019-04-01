@@ -17,7 +17,6 @@ import org.junit.Assert.*
 import java.util.concurrent.*
 import java.util.concurrent.atomic.*
 
-
 private const val TEST_SIZE = 100_000
 private const val DEFAULT_THREADS_COUNT = 32
 
@@ -52,9 +51,9 @@ abstract class MultithreadedTest(private val factory: HttpClientEngineFactory<*>
 }
 
 private fun <T> withPool(
-        threads: Int = DEFAULT_THREADS_COUNT,
-        testSize: Int = TEST_SIZE,
-        block: suspend () -> T
+    threads: Int = DEFAULT_THREADS_COUNT,
+    testSize: Int = TEST_SIZE,
+    block: suspend () -> T
 ): List<T> {
     val pool = Executors.newFixedThreadPool(threads)
     val result = List(testSize) {

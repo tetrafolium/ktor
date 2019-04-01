@@ -12,7 +12,7 @@ internal class CharBufferBuilder : CharSequence, Appendable {
         private set
 
     override fun get(index: Int): Char {
-        require(index >= 0) { "index is negative: $index"}
+        require(index >= 0) { "index is negative: $index" }
         require(index < length) { "index $index is not in range [0, $length)" }
 
         return getImpl(index)
@@ -153,7 +153,7 @@ internal class CharBufferBuilder : CharSequence, Appendable {
         val list = buffers
 
         if (list == null) {
-            if (index >= CHAR_BUFFER_SIZE) throw IndexOutOfBoundsException("$index is not in range [0; ${CHAR_BUFFER_SIZE})")
+            if (index >= CHAR_BUFFER_SIZE) throw IndexOutOfBoundsException("$index is not in range [0; $CHAR_BUFFER_SIZE)")
             return current ?: throw IndexOutOfBoundsException("$index is not in range [0; 0)")
         }
 

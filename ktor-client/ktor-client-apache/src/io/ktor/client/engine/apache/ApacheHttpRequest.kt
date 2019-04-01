@@ -12,13 +12,12 @@ import org.apache.http.impl.nio.client.*
 import java.util.*
 import java.util.concurrent.atomic.*
 
-
 class ApacheHttpRequest(
-        override val call: HttpClientCall,
-        private val engine: CloseableHttpAsyncClient,
-        private val config: ApacheEngineConfig,
-        private val dispatcher: CoroutineDispatcher,
-        private val requestData: HttpRequestData
+    override val call: HttpClientCall,
+    private val engine: CloseableHttpAsyncClient,
+    private val config: ApacheEngineConfig,
+    private val dispatcher: CoroutineDispatcher,
+    private val requestData: HttpRequestData
 ) : HttpRequest {
     override val attributes: Attributes = Attributes()
 
@@ -35,9 +34,9 @@ class ApacheHttpRequest(
 }
 
 private suspend fun CloseableHttpAsyncClient.sendRequest(
-        call: HttpClientCall,
-        request: ApacheRequestProducer,
-        dispatcher: CoroutineDispatcher
+    call: HttpClientCall,
+    request: ApacheRequestProducer,
+    dispatcher: CoroutineDispatcher
 ): ApacheHttpResponse = suspendCancellableCoroutine { continuation ->
     val completed = AtomicBoolean(false)
     val requestTime = Date()

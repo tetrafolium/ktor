@@ -5,9 +5,11 @@ import io.ktor.http.cio.internals.*
 import kotlinx.coroutines.experimental.io.*
 import java.io.*
 
-fun expectHttpUpgrade(method: HttpMethod,
-                      upgrade: CharSequence?,
-                      connectionOptions: ConnectionOptions?): Boolean {
+fun expectHttpUpgrade(
+    method: HttpMethod,
+    upgrade: CharSequence?,
+    connectionOptions: ConnectionOptions?
+): Boolean {
     return method == HttpMethod.Get &&
             upgrade != null &&
             connectionOptions?.upgrade == true
@@ -19,11 +21,13 @@ fun expectHttpUpgrade(request: Request): Boolean {
             ConnectionOptions.parse(request.headers["Connection"]))
 }
 
-fun expectHttpBody(method: HttpMethod,
-                   contentLength: Long,
-                   transferEncoding: CharSequence?,
-                   connectionOptions: ConnectionOptions?,
-                   contentType: CharSequence?): Boolean {
+fun expectHttpBody(
+    method: HttpMethod,
+    contentLength: Long,
+    transferEncoding: CharSequence?,
+    connectionOptions: ConnectionOptions?,
+    contentType: CharSequence?
+): Boolean {
     if (method == HttpMethod.Get ||
             method == HttpMethod.Head ||
             method == HttpMethod.Options) {
@@ -50,11 +54,13 @@ fun expectHttpBody(request: Request): Boolean {
             )
 }
 
-suspend fun parseHttpBody(contentLength: Long,
-                          transferEncoding: CharSequence?,
-                          connectionOptions: ConnectionOptions?,
-                          input: ByteReadChannel,
-                          out: ByteWriteChannel) {
+suspend fun parseHttpBody(
+    contentLength: Long,
+    transferEncoding: CharSequence?,
+    connectionOptions: ConnectionOptions?,
+    input: ByteReadChannel,
+    out: ByteWriteChannel
+) {
     if (transferEncoding != null) {
         if (transferEncoding.equalsLowerCase(other = "chunked")) {
             return decodeChunked(input, out)

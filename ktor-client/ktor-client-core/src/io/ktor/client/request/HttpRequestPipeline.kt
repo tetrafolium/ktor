@@ -3,7 +3,6 @@ package io.ktor.client.request
 import io.ktor.client.call.*
 import io.ktor.pipeline.*
 
-
 class HttpRequestPipeline : Pipeline<Any, HttpRequestBuilder>(Before, State, Transform, Render, Send) {
     /**
      * All interceptors accept payload as [subject] and try to convert it to [OutgoingContent]

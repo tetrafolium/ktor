@@ -3,7 +3,6 @@ package io.ktor.http.cio
 import io.ktor.http.cio.internals.*
 import kotlinx.io.pool.*
 
-
 private const val EXPECTED_HEADERS_QTY = 32
 /*
  * index array structure
@@ -39,7 +38,7 @@ class HttpHeadersMap internal constructor(private val builder: CharBufferBuilder
         array[base + 3] = nameEndIndex
         array[base + 4] = valueStartIndex
         array[base + 5] = valueEndIndex
-        array[base + 6] = -1  // TODO
+        array[base + 6] = -1 // TODO
         array[base + 7] = -1
 
         size++

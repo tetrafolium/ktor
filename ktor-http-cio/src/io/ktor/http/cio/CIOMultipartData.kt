@@ -11,10 +11,12 @@ import java.nio.channels.*
 import java.nio.file.*
 import kotlin.coroutines.experimental.*
 
-class CIOMultipartData(channel: ByteReadChannel,
-                       headers: HttpHeadersMap,
-                       formFieldLimit: Int = 65536,
-                       inMemoryFileUploadLimit: Int = formFieldLimit)
+class CIOMultipartData(
+    channel: ByteReadChannel,
+    headers: HttpHeadersMap,
+    formFieldLimit: Int = 65536,
+    inMemoryFileUploadLimit: Int = formFieldLimit
+)
     : CIOMultipartDataBase(
         ioCoroutineDispatcher,
         channel, headers[HttpHeaders.ContentType]!!,
@@ -22,12 +24,13 @@ class CIOMultipartData(channel: ByteReadChannel,
         formFieldLimit, inMemoryFileUploadLimit)
 
 open class CIOMultipartDataBase(
-                                coroutineContext: CoroutineContext,
-                                channel: ByteReadChannel,
-                                contentType: CharSequence,
-                                contentLength: Long?,
-                                private val formFieldLimit: Int = 65536,
-                                private val inMemoryFileUploadLimit: Int = formFieldLimit) : MultiPartData {
+    coroutineContext: CoroutineContext,
+    channel: ByteReadChannel,
+    contentType: CharSequence,
+    contentLength: Long?,
+    private val formFieldLimit: Int = 65536,
+    private val inMemoryFileUploadLimit: Int = formFieldLimit
+) : MultiPartData {
 
     private val events = parseMultipart(coroutineContext, channel, contentType, contentLength)
 

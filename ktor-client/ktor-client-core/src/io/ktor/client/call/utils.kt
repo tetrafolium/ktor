@@ -6,7 +6,6 @@ import io.ktor.content.*
 import io.ktor.http.*
 import java.net.*
 
-
 class UnsupportedContentTypeException(content: OutgoingContent)
     : IllegalStateException("Failed to write body: ${content::class}")
 

@@ -10,7 +10,6 @@ import java.io.*
 import java.nio.charset.*
 import java.util.*
 
-
 interface HttpResponse : HttpMessage, Closeable {
 
     val call: HttpClientCall
@@ -29,8 +28,8 @@ interface HttpResponse : HttpMessage, Closeable {
 }
 
 suspend fun HttpResponse.readText(
-        charset: Charset? = null,
-        pool: ObjectPool<ByteBuffer> = KtorDefaultPool
+    charset: Charset? = null,
+    pool: ObjectPool<ByteBuffer> = KtorDefaultPool
 ): String {
     val length = headers[HttpHeaders.ContentLength]?.toInt() ?: 1
     return content.toByteArray(length, pool).toString(charset() ?: charset ?: Charsets.ISO_8859_1)

@@ -17,7 +17,6 @@ import kotlinx.coroutines.experimental.*
 import org.junit.*
 import org.junit.Assert.*
 
-
 abstract class FullFormTest(private val factory: HttpClientEngineFactory<*>) : TestWithKtor() {
     override val server = embeddedServer(Jetty, serverPort) {
         routing {

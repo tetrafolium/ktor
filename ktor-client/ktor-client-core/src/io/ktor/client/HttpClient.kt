@@ -8,10 +8,9 @@ import io.ktor.client.response.*
 import io.ktor.util.*
 import java.io.*
 
-
 class HttpClient private constructor(
-        private val engine: HttpClientEngine,
-        private val config: HttpClientConfig
+    private val engine: HttpClientEngine,
+    private val config: HttpClientConfig
 ) : Closeable {
     constructor(engineFactory: HttpClientEngineFactory<*>, block: HttpClientConfig.() -> Unit = {})
             : this(engineFactory.create(), HttpClientConfig().apply(block))

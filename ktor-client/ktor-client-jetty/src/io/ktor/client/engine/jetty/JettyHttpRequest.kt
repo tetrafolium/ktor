@@ -17,12 +17,11 @@ import org.eclipse.jetty.http2.frames.*
 import java.io.*
 import java.util.*
 
-
 class JettyHttpRequest(
-        override val call: HttpClientCall,
-        private val client: JettyHttp2Engine,
-        private val dispatcher: CoroutineDispatcher,
-        requestData: HttpRequestData
+    override val call: HttpClientCall,
+    private val client: JettyHttp2Engine,
+    private val dispatcher: CoroutineDispatcher,
+    requestData: HttpRequestData
 ) : HttpRequest {
     override val attributes: Attributes = Attributes()
 
@@ -54,7 +53,6 @@ class JettyHttpRequest(
         val origin = Closeable { bodyChannel.close() }
         return JettyHttpResponse(call, status, headers, requestTime, responseContext, bodyChannel, origin)
     }
-
 
     private fun prepareHeadersFrame(content: OutgoingContent): HeadersFrame {
         val rawHeaders = HttpFields()
@@ -109,5 +107,4 @@ class JettyHttpRequest(
         }
     }
 }
-
 

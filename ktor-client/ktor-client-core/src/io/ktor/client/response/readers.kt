@@ -6,7 +6,6 @@ import io.ktor.client.utils.*
 import io.ktor.http.*
 import java.nio.charset.*
 
-
 suspend fun HttpResponse.readBytes(count: Int): ByteArray =
         ByteArray(count).also { content.readFully(it) }
 

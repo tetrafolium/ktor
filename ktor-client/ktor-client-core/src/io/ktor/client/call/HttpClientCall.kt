@@ -9,9 +9,8 @@ import java.util.concurrent.atomic.*
 import kotlin.reflect.*
 import kotlin.reflect.full.*
 
-
 class HttpClientCall private constructor(
-        private val client: HttpClient
+    private val client: HttpClient
 ) : Closeable {
     private val received = AtomicBoolean(false)
 

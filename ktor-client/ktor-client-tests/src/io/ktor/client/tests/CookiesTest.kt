@@ -14,7 +14,6 @@ import kotlinx.coroutines.experimental.*
 import org.junit.*
 import org.junit.Assert.*
 
-
 abstract class CookiesTest(private val factory: HttpClientEngineFactory<*>) : TestWithKtor() {
     override val server: ApplicationEngine = embeddedServer(Jetty, serverPort) {
         routing {

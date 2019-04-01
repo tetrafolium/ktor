@@ -2,7 +2,6 @@ package io.ktor.client.utils
 
 import io.ktor.http.*
 
-
 object CacheControl {
     val MAX_AGE = "max-age"
     val MIN_FRESH = "min-fresh"

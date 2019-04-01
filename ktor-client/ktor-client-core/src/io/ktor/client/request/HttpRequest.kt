@@ -8,7 +8,6 @@ import io.ktor.http.*
 import io.ktor.util.*
 import kotlinx.coroutines.experimental.*
 
-
 interface HttpRequest : HttpMessage {
     val call: HttpClientCall
 
@@ -41,11 +40,11 @@ class HttpRequestBuilder : HttpMessageBuilder {
 }
 
 class HttpRequestData(
-        val url: Url,
-        val method: HttpMethod,
-        val headers: Headers,
-        val body: Any,
-        val executionContext: CompletableDeferred<Unit>
+    val url: Url,
+    val method: HttpMethod,
+    val headers: Headers,
+    val body: Any,
+    val executionContext: CompletableDeferred<Unit>
 )
 
 fun HttpRequestBuilder.takeFrom(builder: HttpRequestBuilder): HttpRequestBuilder {
@@ -58,10 +57,10 @@ fun HttpRequestBuilder.takeFrom(builder: HttpRequestBuilder): HttpRequestBuilder
 }
 
 fun HttpRequestBuilder.url(
-        scheme: String = "http",
-        host: String = "localhost",
-        port: Int = 80,
-        path: String = "/"
+    scheme: String = "http",
+    host: String = "localhost",
+    port: Int = 80,
+    path: String = "/"
 ) {
     url.apply {
         protocol = URLProtocol.createOrDefault(scheme)

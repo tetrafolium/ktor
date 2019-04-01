@@ -11,10 +11,9 @@ import org.apache.http.nio.protocol.*
 import org.apache.http.protocol.*
 import java.nio.*
 
-
 internal suspend fun suspendRequest(
-        data: Channel<ByteBuffer>,
-        block: (HttpAsyncResponseConsumer<Unit>, FutureCallback<Unit>) -> Unit
+    data: Channel<ByteBuffer>,
+    block: (HttpAsyncResponseConsumer<Unit>, FutureCallback<Unit>) -> Unit
 ): HttpResponse {
     return suspendCancellableCoroutine { continuation ->
         val consumer = object : AsyncByteConsumer<Unit>() {

@@ -4,7 +4,6 @@ import io.ktor.client.call.*
 import io.ktor.pipeline.*
 import kotlin.reflect.*
 
-
 class HttpResponsePipeline : Pipeline<HttpResponseContainer, HttpClientCall>(Receive, Parse, Transform, State, After) {
     companion object Phases {
         /**

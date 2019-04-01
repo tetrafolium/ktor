@@ -4,7 +4,6 @@ import io.ktor.http.*
 import java.util.*
 import java.util.concurrent.*
 
-
 interface CookiesStorage {
     operator fun get(host: String): Map<String, Cookie>?
     operator fun get(host: String, name: String): Cookie?

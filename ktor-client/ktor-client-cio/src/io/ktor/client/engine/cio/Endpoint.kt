@@ -11,13 +11,13 @@ import java.net.*
 import java.util.concurrent.atomic.*
 
 internal class Endpoint(
-        host: String,
-        port: Int,
-        private val secure: Boolean,
-        private val dispatcher: CoroutineDispatcher,
-        private val config: CIOEngineConfig,
-        private val connectionFactory: ConnectionFactory,
-        private val onDone: () -> Unit
+    host: String,
+    port: Int,
+    private val secure: Boolean,
+    private val dispatcher: CoroutineDispatcher,
+    private val config: CIOEngineConfig,
+    private val connectionFactory: ConnectionFactory,
+    private val onDone: () -> Unit
 ) : Closeable {
     private val tasks: Channel<ConnectionRequestTask> = Channel(Channel.UNLIMITED)
     private val deliveryPoint: Channel<ConnectionRequestTask> = Channel()

@@ -57,5 +57,4 @@ abstract class PostTest(private val factory: HttpClientEngineFactory<*>) : TestW
         assertEquals(text, response)
         client.close()
     }
-
 }

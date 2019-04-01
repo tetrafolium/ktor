@@ -14,23 +14,23 @@ import java.nio.channels.*
 import java.util.*
 
 internal class ConnectionRequestTask(
-        val request: CIOHttpRequest,
-        val content: OutgoingContent,
-        val continuation: CancellableContinuation<CIOHttpResponse>
+    val request: CIOHttpRequest,
+    val content: OutgoingContent,
+    val continuation: CancellableContinuation<CIOHttpResponse>
 )
 
 private class ConnectionResponseTask(
-        val requestTime: Date,
-        val continuation: CancellableContinuation<CIOHttpResponse>,
-        val call: CIOHttpRequest
+    val requestTime: Date,
+    val continuation: CancellableContinuation<CIOHttpResponse>,
+    val call: CIOHttpRequest
 )
 
 internal class ConnectionPipeline(
-        dispatcher: CoroutineDispatcher,
-        keepAliveTime: Int,
-        pipelineMaxSize: Int,
-        socket: Socket,
-        tasks: Channel<ConnectionRequestTask>
+    dispatcher: CoroutineDispatcher,
+    keepAliveTime: Int,
+    pipelineMaxSize: Int,
+    socket: Socket,
+    tasks: Channel<ConnectionRequestTask>
 ) {
     private val inputChannel = socket.openReadChannel()
     private val outputChannel = socket.openWriteChannel()

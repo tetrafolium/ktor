@@ -20,9 +20,9 @@ data class StatusWithHeaders(val statusCode: HttpStatusCode, val headers: Header
 private data class JettyResponseChunk(val buffer: ByteBuffer, val callback: Callback)
 
 internal class JettyResponseListener(
-        private val channel: ByteWriteChannel,
-        private val dispatcher: CoroutineDispatcher,
-        private val context: CompletableDeferred<Unit>
+    private val channel: ByteWriteChannel,
+    private val dispatcher: CoroutineDispatcher,
+    private val context: CompletableDeferred<Unit>
 ) : Stream.Listener {
     private val headersBuilder: HeadersBuilder = HeadersBuilder()
     private val onHeadersReceived: CompletableFuture<HttpStatusCode?> = CompletableFuture()

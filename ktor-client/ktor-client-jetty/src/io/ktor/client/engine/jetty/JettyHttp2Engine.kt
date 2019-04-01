@@ -8,7 +8,6 @@ import org.eclipse.jetty.http2.api.*
 import org.eclipse.jetty.http2.client.*
 import java.net.*
 
-
 class JettyHttp2Engine(config: JettyEngineConfig) : HttpClientEngine {
     private val sslContextFactory = config.sslContextFactory
     private val jettyClient = HTTP2Client().apply {

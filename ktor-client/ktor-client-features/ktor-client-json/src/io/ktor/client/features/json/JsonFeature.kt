@@ -9,7 +9,6 @@ import io.ktor.http.*
 import io.ktor.pipeline.*
 import io.ktor.util.*
 
-
 class JsonFeature(val serializer: JsonSerializer) {
     class Config {
         var serializer: JsonSerializer = GsonSerializer()

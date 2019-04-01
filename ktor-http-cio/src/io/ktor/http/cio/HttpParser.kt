@@ -102,7 +102,6 @@ internal suspend fun parseHeaders(input: ByteReadChannel, builder: CharBufferBui
     }
 }
 
-
 private fun parseHttpMethod(text: CharSequence, range: MutableRange): HttpMethod {
     skipSpaces(text, range)
     val exact = DefaultHttpMethods.search(text, range.start, range.end) { ch, _ -> ch == ' ' }.singleOrNull()
@@ -134,7 +133,6 @@ private fun parseUri(text: CharSequence, range: MutableRange): CharSequence {
     range.start = spaceOrEnd
     return s
 }
-
 
 private val versions = AsciiCharTree.build(listOf("HTTP/1.0", "HTTP/1.1"))
 private fun parseVersion(text: CharSequence, range: MutableRange): CharSequence {

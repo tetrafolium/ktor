@@ -34,7 +34,6 @@ class CIOHttpsTest : TestWithKtor() {
                 }
             }
         }
-
     })
 
     companion object {
@@ -53,7 +52,6 @@ class CIOHttpsTest : TestWithKtor() {
             sslContext.init(null, tmf.trustManagers, null)
             x509TrustManager = tmf.trustManagers.first { it is X509TrustManager } as X509TrustManager
         }
-
     }
 
     @Test

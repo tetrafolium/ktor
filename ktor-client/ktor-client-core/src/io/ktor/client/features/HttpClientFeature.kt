@@ -3,7 +3,6 @@ package io.ktor.client.features
 import io.ktor.client.*
 import io.ktor.util.*
 
-
 internal val FEATURE_INSTALLED_LIST = AttributeKey<Attributes>("ApplicationFeatureRegistry")
 
 interface HttpClientFeature<out TBuilder : Any, TFeature : Any> {

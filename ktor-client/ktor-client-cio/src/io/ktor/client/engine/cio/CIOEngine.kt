@@ -32,7 +32,6 @@ class CIOEngine(private val config: CIOEngineConfig) : HttpClientEngine {
                         endpoints.remove(address)
                     }
                 }
-
             }
 
             try {

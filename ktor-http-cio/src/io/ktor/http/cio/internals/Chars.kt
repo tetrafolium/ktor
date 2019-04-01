@@ -15,7 +15,7 @@ internal fun CharSequence.hashCodeLowerCase(start: Int = 0, end: Int = length): 
 }
 
 internal fun CharSequence.equalsLowerCase(start: Int = 0, end: Int = length, other: CharSequence): Boolean {
-    if  (end - start != other.length) return false
+    if (end - start != other.length) return false
 
     for (pos in start until end) {
         if (get(pos).toInt().toLowerCase() != other.get(pos - start).toInt().toLowerCase()) return false
@@ -25,11 +25,10 @@ internal fun CharSequence.equalsLowerCase(start: Int = 0, end: Int = length, oth
 }
 
 @Suppress("NOTHING_TO_INLINE")
-private inline fun Int.toLowerCase() = if (this in 'A'.toInt() .. 'Z'.toInt()) 'a'.toInt() + (this - 'A'.toInt()) else this
+private inline fun Int.toLowerCase() = if (this in 'A'.toInt()..'Z'.toInt()) 'a'.toInt() + (this - 'A'.toInt()) else this
 
 internal val DefaultHttpMethods =
     AsciiCharTree.build(HttpMethod.DefaultMethods, { it.value.length }, { m, idx -> m.value[idx] })
-
 
 private val HexTable = (0..0xff).map { v ->
     when {
@@ -137,4 +136,3 @@ private fun numberFormatException(cs: CharSequence, idx: Int) {
 private fun numberFormatException(cs: CharSequence) {
     throw NumberFormatException("Invalid number $cs: too large for Long type")
 }
-

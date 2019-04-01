@@ -10,7 +10,6 @@ import io.ktor.http.*
 import io.ktor.pipeline.*
 import io.ktor.util.*
 
-
 class HttpCookies(private val storage: CookiesStorage) {
 
     operator fun get(host: String): Map<String, Cookie>? = storage[host]

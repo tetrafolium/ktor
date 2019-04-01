@@ -8,11 +8,10 @@ import io.ktor.http.*
 import io.ktor.util.*
 import kotlinx.coroutines.experimental.*
 
-
 class CIOHttpRequest(
-        override val call: HttpClientCall,
-        private val engine: CIOEngine,
-        requestData: HttpRequestData
+    override val call: HttpClientCall,
+    private val engine: CIOEngine,
+    requestData: HttpRequestData
 ) : HttpRequest {
     override val attributes: Attributes = Attributes()
     override val method: HttpMethod = requestData.method

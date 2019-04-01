@@ -8,7 +8,6 @@ import io.ktor.http.*
 import io.ktor.util.*
 import java.nio.charset.*
 
-
 class HttpPlainText(private val defaultCharset: Charset) {
     suspend fun read(response: HttpResponse): String = response.readText(charset = defaultCharset)
 

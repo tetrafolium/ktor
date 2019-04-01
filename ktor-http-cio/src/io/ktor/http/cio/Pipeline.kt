@@ -17,21 +17,25 @@ fun lastHttpRequest(http11: Boolean, connectionOptions: ConnectionOptions?): Boo
     }
 }
 
-typealias HttpRequestHandler = suspend (request: Request,
-                                        input: ByteReadChannel,
-                                        output: ByteWriteChannel,
-                                        upgraded: CompletableDeferred<Boolean>?) -> Unit
+typealias HttpRequestHandler = suspend (
+    request: Request,
+    input: ByteReadChannel,
+    output: ByteWriteChannel,
+    upgraded: CompletableDeferred<Boolean>?
+) -> Unit
 
 val HttpPipelineCoroutine = CoroutineName("http-pipeline")
 val HttpPipelineWriterCoroutine = CoroutineName("http-pipeline-writer")
 
-fun startConnectionPipeline(input: ByteReadChannel,
-                            output: ByteWriteChannel,
-                            parentJob: CoroutineContext?,
-                            ioContext: CoroutineContext,
-                            callContext: CoroutineContext,
-                            timeout: WeakTimeoutQueue,
-                            handler: HttpRequestHandler): Job {
+fun startConnectionPipeline(
+    input: ByteReadChannel,
+    output: ByteWriteChannel,
+    parentJob: CoroutineContext?,
+    ioContext: CoroutineContext,
+    callContext: CoroutineContext,
+    timeout: WeakTimeoutQueue,
+    handler: HttpRequestHandler
+): Job {
 
     return launch(ioContext + HttpPipelineCoroutine + (parentJob ?: EmptyCoroutineContext)) {
         val outputsActor = actor<ByteReadChannel>(
@@ -160,12 +164,14 @@ fun startConnectionPipeline(input: ByteReadChannel,
 
 @Deprecated("Use startConnectionPipeline instead",
         ReplaceWith("startConnectionPipeline(input, output, ioCoroutineContext, callContext, timeouts, handler).join()"))
-suspend fun handleConnectionPipeline(input: ByteReadChannel,
-                                     output: ByteWriteChannel,
-                                     ioCoroutineContext: CoroutineContext,
-                                     callContext: CoroutineContext,
-                                     timeouts: WeakTimeoutQueue,
-                                     handler: HttpRequestHandler) {
+suspend fun handleConnectionPipeline(
+    input: ByteReadChannel,
+    output: ByteWriteChannel,
+    ioCoroutineContext: CoroutineContext,
+    callContext: CoroutineContext,
+    timeouts: WeakTimeoutQueue,
+    handler: HttpRequestHandler
+) {
     startConnectionPipeline(input, output, null, ioCoroutineContext, callContext, timeouts, handler).join()
 }
 

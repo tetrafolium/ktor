@@ -5,7 +5,6 @@ import kotlinx.coroutines.experimental.*
 import kotlinx.coroutines.experimental.io.*
 import kotlinx.io.pool.*
 
-
 private val cpuCount: Int = Runtime.getRuntime().availableProcessors()
 
 const val DEFAULT_HTTP_POOL_SIZE = 1000

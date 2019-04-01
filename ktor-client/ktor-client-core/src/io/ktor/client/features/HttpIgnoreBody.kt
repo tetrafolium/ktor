@@ -4,7 +4,6 @@ import io.ktor.client.*
 import io.ktor.client.response.*
 import io.ktor.util.*
 
-
 class HttpIgnoreBody {
     companion object Feature : HttpClientFeature<Unit, HttpIgnoreBody> {
         override val key: AttributeKey<HttpIgnoreBody> = AttributeKey("HttpIgnoreBody")
