@@ -264,8 +264,8 @@ class JWTAuthTest {
                 handle {
                     val principal = call.authentication.principal<JWTPrincipal>()!!
                     principal.payload
-                    //val subjectString = principal.payload.subject.removePrefix("auth0|")
-                    //println(subjectString)
+                    // val subjectString = principal.payload.subject.removePrefix("auth0|")
+                    // println(subjectString)
                     call.respondText("Secret info")
                 }
             }
@@ -314,5 +314,4 @@ class JWTAuthTest {
             .withAudience(audience)
             .withIssuer(issuer)
             .sign(algorithm)
-
 }

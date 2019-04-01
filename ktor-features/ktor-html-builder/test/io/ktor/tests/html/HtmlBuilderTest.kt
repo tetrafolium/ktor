@@ -53,7 +53,6 @@ class HtmlBuilderTest {
                     }
                 }
             }
-
         }
 
         application.routing {

@@ -18,10 +18,10 @@ import java.time.*
  * ```
  */
 class WebSockets(
-        val pingInterval: Duration?,
-        val timeout: Duration,
-        val maxFrameSize: Long,
-        val masking: Boolean
+    val pingInterval: Duration?,
+    val timeout: Duration,
+    val maxFrameSize: Long,
+    val masking: Boolean
 ) {
     class WebSocketOptions {
         var pingPeriod: Duration? = null

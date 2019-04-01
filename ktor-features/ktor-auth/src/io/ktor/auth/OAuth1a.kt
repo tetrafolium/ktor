@@ -19,9 +19,11 @@ import javax.crypto.*
 import javax.crypto.spec.*
 
 internal suspend fun PipelineContext<Unit, ApplicationCall>.oauth1a(
-        client: HttpClient, dispatcher: CoroutineDispatcher,
-        providerLookup: ApplicationCall.() -> OAuthServerSettings?,
-        urlProvider: ApplicationCall.(OAuthServerSettings) -> String) {
+    client: HttpClient,
+    dispatcher: CoroutineDispatcher,
+    providerLookup: ApplicationCall.() -> OAuthServerSettings?,
+    urlProvider: ApplicationCall.(OAuthServerSettings) -> String
+) {
     val provider = call.providerLookup()
     if (provider is OAuthServerSettings.OAuth1aServerSettings) {
         val token = call.oauth1aHandleCallback()
@@ -150,10 +152,10 @@ private suspend fun simpleOAuth1aStep2(client: HttpClient, secretKey: String, ba
 }
 
 fun obtainRequestTokenHeader(
-        callback: String,
-        consumerKey: String,
-        nonce: String,
-        timestamp: LocalDateTime = LocalDateTime.now()
+    callback: String,
+    consumerKey: String,
+    nonce: String,
+    timestamp: LocalDateTime = LocalDateTime.now()
 ) = HttpAuthHeader.Parameterized(
         authScheme = AuthScheme.OAuth,
         parameters = mapOf(
@@ -167,10 +169,10 @@ fun obtainRequestTokenHeader(
 )
 
 fun upgradeRequestTokenHeader(
-        consumerKey: String,
-        token: String,
-        nonce: String,
-        timestamp: LocalDateTime = LocalDateTime.now()
+    consumerKey: String,
+    token: String,
+    nonce: String,
+    timestamp: LocalDateTime = LocalDateTime.now()
 ) = HttpAuthHeader.Parameterized(
         authScheme = AuthScheme.OAuth,
         parameters = mapOf(

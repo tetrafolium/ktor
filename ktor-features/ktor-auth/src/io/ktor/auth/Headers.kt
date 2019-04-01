@@ -83,8 +83,8 @@ sealed class HttpAuthHeader(val authScheme: String) {
 
     companion object {
         fun basicAuthChallenge(realm: String) = Parameterized(AuthScheme.Basic, mapOf(Parameters.Realm to realm))
-        fun digestAuthChallenge(realm: String, nonce: String = nextNonce(), domain: List<String> = emptyList(), opaque: String? = null, stale: Boolean? = null, algorithm: String = "MD5")
-                = Parameterized(AuthScheme.Digest, linkedMapOf<String, String>().apply {
+        fun digestAuthChallenge(realm: String, nonce: String = nextNonce(), domain: List<String> = emptyList(), opaque: String? = null, stale: Boolean? = null, algorithm: String = "MD5") =
+                Parameterized(AuthScheme.Digest, linkedMapOf<String, String>().apply {
             put("realm", realm)
             put("nonce", nonce)
             if (domain.isNotEmpty()) {

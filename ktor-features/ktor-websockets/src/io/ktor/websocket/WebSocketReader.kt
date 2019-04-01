@@ -14,10 +14,11 @@ import kotlin.coroutines.experimental.*
  * converts into Websocket [Frame] exposing them in [incoming].
  */
 class WebSocketReader @Deprecated("Internal API") constructor(
-        val byteChannel: ByteReadChannel,
-        val maxFrameSize: () -> Long,
-        job: Job, context: CoroutineContext,
-        pool: ObjectPool<ByteBuffer>
+    val byteChannel: ByteReadChannel,
+    val maxFrameSize: () -> Long,
+    job: Job,
+    context: CoroutineContext,
+    pool: ObjectPool<ByteBuffer>
 ) {
     private var state = State.HEADER
     private val frameParser = FrameParser()

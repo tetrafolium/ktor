@@ -67,7 +67,6 @@ class GsonSupport(val gson: Gson) {
     }
 }
 
-
 class GsonConverter(private val gson: Gson = Gson()) : ContentConverter {
     override suspend fun convertForSend(context: PipelineContext<Any, ApplicationCall>, contentType: ContentType, value: Any): Any? {
         return TextContent(gson.toJson(value), contentType.withCharset(context.call.suitableCharset()))

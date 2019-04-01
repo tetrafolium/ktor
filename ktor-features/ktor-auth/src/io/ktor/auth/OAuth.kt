@@ -42,27 +42,27 @@ object DefaultOAuth2StateProvider : OAuth2StateProvider {
 
 sealed class OAuthServerSettings(val name: String, val version: OAuthVersion) {
     class OAuth1aServerSettings(
-            name: String,
-            val requestTokenUrl: String,
-            val authorizeUrl: String,
-            val accessTokenUrl: String,
+        name: String,
+        val requestTokenUrl: String,
+        val authorizeUrl: String,
+        val accessTokenUrl: String,
 
-            val consumerKey: String,
-            val consumerSecret: String
+        val consumerKey: String,
+        val consumerSecret: String
     ) : OAuthServerSettings(name, OAuthVersion.V10a)
 
     class OAuth2ServerSettings(
-            name: String,
-            val authorizeUrl: String,
-            val accessTokenUrl: String,
-            val requestMethod: HttpMethod = HttpMethod.Get,
+        name: String,
+        val authorizeUrl: String,
+        val accessTokenUrl: String,
+        val requestMethod: HttpMethod = HttpMethod.Get,
 
-            val clientId: String,
-            val clientSecret: String,
-            val defaultScopes: List<String> = emptyList(),
-            val accessTokenRequiresBasicAuth: Boolean = false,
+        val clientId: String,
+        val clientSecret: String,
+        val defaultScopes: List<String> = emptyList(),
+        val accessTokenRequiresBasicAuth: Boolean = false,
 
-            val stateProvider: OAuth2StateProvider = DefaultOAuth2StateProvider
+        val stateProvider: OAuth2StateProvider = DefaultOAuth2StateProvider
     ) : OAuthServerSettings(name, OAuthVersion.V20)
 }
 
@@ -82,9 +82,10 @@ object OAuthGrantTypes {
 }
 
 suspend fun PipelineContext<Unit, ApplicationCall>.oauth(
-        client: HttpClient, dispatcher: CoroutineDispatcher,
-        providerLookup: ApplicationCall.() -> OAuthServerSettings?,
-        urlProvider: ApplicationCall.(OAuthServerSettings) -> String
+    client: HttpClient,
+    dispatcher: CoroutineDispatcher,
+    providerLookup: ApplicationCall.() -> OAuthServerSettings?,
+    urlProvider: ApplicationCall.(OAuthServerSettings) -> String
 ) {
     oauth1a(client, dispatcher, providerLookup, urlProvider)
     oauth2(client, dispatcher, providerLookup, urlProvider)
@@ -105,13 +106,13 @@ suspend fun PipelineContext<Unit, ApplicationCall>.oauthRespondRedirect(client: 
 }
 
 suspend fun PipelineContext<Unit, ApplicationCall>.oauthHandleCallback(
-        client: HttpClient,
-        dispatcher: CoroutineDispatcher,
-        provider: OAuthServerSettings,
-        callbackUrl: String,
-        loginPageUrl: String,
-        configure: HttpRequestBuilder.() -> Unit = {},
-        block: suspend (OAuthAccessTokenResponse) -> Unit
+    client: HttpClient,
+    dispatcher: CoroutineDispatcher,
+    provider: OAuthServerSettings,
+    callbackUrl: String,
+    loginPageUrl: String,
+    configure: HttpRequestBuilder.() -> Unit = {},
+    block: suspend (OAuthAccessTokenResponse) -> Unit
 ) {
     when (provider) {
         is OAuthServerSettings.OAuth1aServerSettings -> {

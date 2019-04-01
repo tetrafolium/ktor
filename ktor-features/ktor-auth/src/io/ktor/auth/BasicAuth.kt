@@ -57,4 +57,3 @@ fun ApplicationRequest.basicAuthenticationCredentials(): UserPasswordCredential?
 }
 
 private val basicAuthenticationChallengeKey: Any = "BasicAuth"
-

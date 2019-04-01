@@ -45,5 +45,4 @@ data class CloseReason(val code: Short, val message: String) {
             fun byCode(code: Short) = byCodeMap[code]
         }
     }
-
 }

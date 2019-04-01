@@ -101,9 +101,11 @@ internal class CacheWeakReference<out K, V>(override val key: K, value: V, queue
 internal class SoftReferenceCache<K : Any, V : Any>(calc: suspend (K) -> V) : ReferenceCache<K, V, CacheSoftReference<K, V>>(calc, { k, v, q -> CacheSoftReference(k, v, q) })
 internal class WeakReferenceCache<K : Any, V : Any>(calc: suspend (K) -> V) : ReferenceCache<K, V, CacheWeakReference<K, V>>(calc, { k, v, q -> CacheWeakReference(k, v, q) })
 
-internal class BaseTimeoutCache<in K : Any, V : Any>(val timeoutValue: Long,
-                                                     val touchOnGet: Boolean,
-                                                     val delegate: Cache<K, V>) : Cache<K, V> {
+internal class BaseTimeoutCache<in K : Any, V : Any>(
+    val timeoutValue: Long,
+    val touchOnGet: Boolean,
+    val delegate: Cache<K, V>
+) : Cache<K, V> {
 
     private val lock = ReentrantLock()
     private val cond = lock.newCondition()

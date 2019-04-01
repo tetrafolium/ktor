@@ -6,7 +6,7 @@ import kotlinx.io.core.*
 import kotlinx.io.core.ByteOrder
 import java.nio.*
 
-enum class FrameType (val controlFrame: Boolean, val opcode: Int) {
+enum class FrameType(val controlFrame: Boolean, val opcode: Int) {
     TEXT(false, 1),
     BINARY(false, 2),
     CLOSE(true, 8),

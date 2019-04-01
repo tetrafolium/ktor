@@ -17,9 +17,9 @@ import kotlin.coroutines.experimental.*
  * It is acting for every client's ping frame and replying with corresponding pong
  */
 fun ponger(
-        coroutineContext: CoroutineContext,
-        session: WebSocketSession,
-        pool: ObjectPool<ByteBuffer>
+    coroutineContext: CoroutineContext,
+    session: WebSocketSession,
+    pool: ObjectPool<ByteBuffer>
 ): SendChannel<Frame.Ping> = actor(coroutineContext, 5, CoroutineStart.LAZY) {
     consumeEach { frame ->
         val message = frame.buffer.copy(pool)
@@ -37,12 +37,12 @@ fun ponger(
  * to the dedicated [out] channel in case of failure
  */
 fun pinger(
-        coroutineContext: CoroutineContext,
-        session: WebSocketSession,
-        period: Duration,
-        timeout: Duration,
-        pool: ObjectPool<ByteBuffer>,
-        out: SendChannel<Frame>
+    coroutineContext: CoroutineContext,
+    session: WebSocketSession,
+    period: Duration,
+    timeout: Duration,
+    pool: ObjectPool<ByteBuffer>,
+    out: SendChannel<Frame>
 ): SendChannel<Frame.Pong> = actor(coroutineContext, Channel.UNLIMITED, CoroutineStart.LAZY) {
     val buffer = pool.borrow()
     val periodMillis = period.toMillis()
@@ -90,9 +90,9 @@ fun pinger(
 }
 
 private suspend fun WebSocketSession.sendPing(
-        buffer: ByteBuffer,
-        encoder: CharsetEncoder,
-        content: String
+    buffer: ByteBuffer,
+    encoder: CharsetEncoder,
+    content: String
 ) = with(buffer) {
     clear()
     encoder.reset()

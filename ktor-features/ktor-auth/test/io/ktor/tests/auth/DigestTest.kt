@@ -112,7 +112,7 @@ class DigestTest {
                 authentication {
                     val p = "Circle Of Life"
                     val digester = MessageDigest.getInstance("MD5")
-                    digestAuthentication(realm = "testrealm@host.com") { userName, realm ->if (userName == "missing") null else digest(digester, "$userName:$realm:$p") }
+                    digestAuthentication(realm = "testrealm@host.com") { userName, realm -> if (userName == "missing") null else digest(digester, "$userName:$realm:$p") }
                 }
 
                 handle {

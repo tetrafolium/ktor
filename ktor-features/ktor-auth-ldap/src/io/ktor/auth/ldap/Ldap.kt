@@ -6,10 +6,12 @@ import java.util.*
 import javax.naming.*
 import javax.naming.directory.*
 
-fun <K : Credential, P : Any> ldapAuthenticate(credential: K,
-                                               ldapServerURL: String,
-                                               ldapEnvironmentBuilder: (MutableMap<String, Any?>) -> Unit = {},
-                                               doVerify: InitialDirContext.(K) -> P?): P? {
+fun <K : Credential, P : Any> ldapAuthenticate(
+    credential: K,
+    ldapServerURL: String,
+    ldapEnvironmentBuilder: (MutableMap<String, Any?>) -> Unit = {},
+    doVerify: InitialDirContext.(K) -> P?
+): P? {
     try {
         val root = ldapLogin(ldapServerURL, ldapEnvironmentBuilder)
         try {
@@ -22,10 +24,12 @@ fun <K : Credential, P : Any> ldapAuthenticate(credential: K,
     }
 }
 
-fun ldapAuthenticate(credential: UserPasswordCredential,
-                     ldapServerURL: String,
-                     userDNFormat: String,
-                     validate: InitialDirContext.(UserPasswordCredential) -> UserIdPrincipal?): UserIdPrincipal? {
+fun ldapAuthenticate(
+    credential: UserPasswordCredential,
+    ldapServerURL: String,
+    userDNFormat: String,
+    validate: InitialDirContext.(UserPasswordCredential) -> UserIdPrincipal?
+): UserIdPrincipal? {
 
     val configurator: (MutableMap<String, Any?>) -> Unit = { env ->
         env[Context.SECURITY_AUTHENTICATION] = "simple"
@@ -42,12 +46,11 @@ fun ldapAuthenticate(credential: UserPasswordCredential, ldapServerURL: String, 
 
 private fun ldapLogin(ldapURL: String, ldapEnvironmentBuilder: (MutableMap<String, Any?>) -> Unit): InitialDirContext {
     val env = Hashtable<String, Any?>()
-    env.put(Context.INITIAL_CONTEXT_FACTORY, LdapCtxFactory::class.qualifiedName!!);
-    env.put(Context.PROVIDER_URL, ldapURL);
+    env.put(Context.INITIAL_CONTEXT_FACTORY, LdapCtxFactory::class.qualifiedName!!)
+    env.put(Context.PROVIDER_URL, ldapURL)
 
     ldapEnvironmentBuilder(env)
 
     return InitialDirContext(env)
 }
-
 

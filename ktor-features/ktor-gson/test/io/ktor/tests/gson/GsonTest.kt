@@ -68,7 +68,6 @@ class GsonTest {
                 val entity = call.receive<MyEntity>()
                 call.respond(entity.toString())
             }
-
         }
 
         handleRequest(HttpMethod.Get, "/") {
@@ -91,10 +90,8 @@ class GsonTest {
             val contentTypeText = assertNotNull(response.headers[HttpHeaders.ContentType])
             assertEquals(ContentType.Text.Plain.withCharset(Charsets.UTF_8), ContentType.parse(contentTypeText))
         }
-
     }
 }
 
 data class MyEntity(val id: Int, val name: String, val children: List<ChildEntity>)
 data class ChildEntity(val item: String, val quantity: Int)
-

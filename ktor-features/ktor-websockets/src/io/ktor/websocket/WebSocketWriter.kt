@@ -13,10 +13,10 @@ import kotlin.coroutines.experimental.*
  * serializes them and writes the bits into the [writeChannel].
  */
 class WebSocketWriter @Deprecated("Internal API") constructor(
-        val writeChannel: ByteWriteChannel,
-        val parent: Job,
-        ctx: CoroutineContext,
-        val pool: ObjectPool<ByteBuffer>
+    val writeChannel: ByteWriteChannel,
+    val parent: Job,
+    ctx: CoroutineContext,
+    val pool: ObjectPool<ByteBuffer>
 ) {
     private val queue = actor(ctx + parent, capacity = 8, start = CoroutineStart.LAZY) {
         pool.use { writeLoop(it) }
@@ -44,8 +44,7 @@ class WebSocketWriter @Deprecated("Internal API") constructor(
                     else -> throw IllegalArgumentException("unknown message $msg")
                 }
             }
-        }
-        finally {
+        } finally {
             close()
             writeChannel.close()
         }

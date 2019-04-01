@@ -8,12 +8,13 @@ import kotlinx.coroutines.experimental.io.*
 import kotlinx.io.pool.*
 import kotlin.coroutines.experimental.*
 
-internal class RawWebSocketImpl(override val call: ApplicationCall,
-                                readChannel: ByteReadChannel,
-                                writeChannel: ByteWriteChannel,
-                                pool: ObjectPool<ByteBuffer> = KtorDefaultPool,
-                                val engineContext: CoroutineContext,
-                                val userContext: CoroutineContext
+internal class RawWebSocketImpl(
+    override val call: ApplicationCall,
+    readChannel: ByteReadChannel,
+    writeChannel: ByteWriteChannel,
+    pool: ObjectPool<ByteBuffer> = KtorDefaultPool,
+    val engineContext: CoroutineContext,
+    val userContext: CoroutineContext
 ) : WebSocketSession {
     private val job = Job()
 

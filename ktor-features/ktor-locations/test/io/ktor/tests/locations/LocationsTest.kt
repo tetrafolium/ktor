@@ -171,7 +171,6 @@ class LocationsTest {
         urlShouldBeUnhandled("/container/123")
     }
 
-
     @Location("/container") class optionalIndex(val id: Int, val optional: Int = 42)
 
     @Test fun `location with missing optional Int parameter`() = withLocationsApplication {
@@ -220,7 +219,6 @@ class LocationsTest {
                 assertEquals("text", it.optional)
                 call.respond(HttpStatusCode.OK)
             }
-
         }
         urlShouldBeHandled(href)
         urlShouldBeHandled("/container")
@@ -256,7 +254,6 @@ class LocationsTest {
             get<tailCard> {
                 call.respond(it.path.toString())
             }
-
         }
         urlShouldBeHandled(href, "[]")
         urlShouldBeHandled("/container/some", "[some]")
@@ -273,7 +270,6 @@ class LocationsTest {
             get<multiquery> {
                 call.respond(it.value.toString())
             }
-
         }
         urlShouldBeHandled(href, "[1, 2, 3]")
     }
@@ -288,7 +284,6 @@ class LocationsTest {
             get<multiquery2> {
                 call.respond("2: ${it.name}")
             }
-
         }
         urlShouldBeHandled(href, "1: [1]")
     }
@@ -303,7 +298,6 @@ class LocationsTest {
             get<multiquery2> {
                 call.respond("2: ${it.name}")
             }
-
         }
         urlShouldBeHandled(href, "2: [john, mary]")
     }
@@ -417,6 +411,4 @@ class LocationsTest {
     fun `location by object has bind argument`() = withLocationsApplication {
         application.locations.href(items)
     }
-
 }
-

@@ -71,7 +71,6 @@ class Metrics(val registry: MetricRegistry) {
         }
     }
 
-
     private data class CallMeasure(val timer: Timer.Context)
 
     private val measureKey = AttributeKey<CallMeasure>("metrics")

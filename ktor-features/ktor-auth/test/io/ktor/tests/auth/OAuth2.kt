@@ -302,7 +302,6 @@ class OAuth2Test {
         }
     }
 
-
     @Test
     fun testResourceOwnerPasswordCredentials() = withTestApplication({ module() }) {
         handleRequestWithBasic("/resource", "user", "pass").let { result ->
@@ -315,7 +314,6 @@ class OAuth2Test {
             assertFailures()
             assertEquals("ok", result.response.content)
         }
-
     }
 
     private fun waitExecutor() {

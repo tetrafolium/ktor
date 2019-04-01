@@ -10,10 +10,11 @@ import java.security.*
  * Installs Digest Authentication mechanism into [AuthenticationPipeline]
  */
 fun AuthenticationPipeline.digestAuthentication(
-        realm: String = "ktor",
-        digestAlgorithm: String = "MD5",
-        digesterProvider: (String) -> MessageDigest = { MessageDigest.getInstance(it) },
-        userNameRealmPasswordDigestProvider: suspend (String, String) -> ByteArray?) {
+    realm: String = "ktor",
+    digestAlgorithm: String = "MD5",
+    digesterProvider: (String) -> MessageDigest = { MessageDigest.getInstance(it) },
+    userNameRealmPasswordDigestProvider: suspend (String, String) -> ByteArray?
+) {
 
     val digester = digesterProvider(digestAlgorithm)
     intercept(AuthenticationPipeline.RequestAuthentication) { context ->
@@ -26,9 +27,9 @@ fun AuthenticationPipeline.digestAuthentication(
         }
 
         val principal = credentials?.let {
-            if ((it.algorithm ?: "MD5") == digestAlgorithm
-                    && it.realm == realm
-                    && it.verify(call.request.local.method, digester, userNameRealmPasswordDigestProvider))
+            if ((it.algorithm ?: "MD5") == digestAlgorithm &&
+                    it.realm == realm &&
+                    it.verify(call.request.local.method, digester, userNameRealmPasswordDigestProvider))
                 UserIdPrincipal(it.userName)
             else
                 null
@@ -55,16 +56,18 @@ fun AuthenticationPipeline.digestAuthentication(
  *
  * For details see [RFC2617](http://www.faqs.org/rfcs/rfc2617.html)
  */
-data class DigestCredential(val realm: String,
-                            val userName: String,
-                            val digestUri: String,
-                            val nonce: String,
-                            val opaque: String?,
-                            val nonceCount: String?,
-                            val algorithm: String?,
-                            val response: String,
-                            val cnonce: String?,
-                            val qop: String?) : Credential
+data class DigestCredential(
+    val realm: String,
+    val userName: String,
+    val digestUri: String,
+    val nonce: String,
+    val opaque: String?,
+    val nonceCount: String?,
+    val algorithm: String?,
+    val response: String,
+    val cnonce: String?,
+    val qop: String?
+) : Credential
 
 /**
  * Retrieves [DigestCredential] from this call

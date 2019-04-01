@@ -292,8 +292,6 @@ class OAuth1aFlowTest {
         }
         latch.await(1L, TimeUnit.MINUTES)
     }
-
-
 }
 
 // NOTICE in fact we can potentially reorganize it to provide API for ktor-users to build their own OAuth servers
@@ -302,8 +300,16 @@ class OAuth1aFlowTest {
 private interface TestingOAuthServer {
     fun requestToken(ctx: ApplicationCall, callback: String?, consumerKey: String, nonce: String, signature: String, signatureMethod: String, timestamp: Long): TestOAuthTokenResponse
     suspend fun authorize(call: ApplicationCall, oauthToken: String)
-    fun accessToken(ctx: ApplicationCall, consumerKey: String, nonce: String, signature: String, signatureMethod: String,
-                    timestamp: Long, token: String, verifier: String): OAuthAccessTokenResponse.OAuth1a
+    fun accessToken(
+        ctx: ApplicationCall,
+        consumerKey: String,
+        nonce: String,
+        signature: String,
+        signatureMethod: String,
+        timestamp: Long,
+        token: String,
+        verifier: String
+    ): OAuthAccessTokenResponse.OAuth1a
 }
 
 private fun createOAuthServer(server: TestingOAuthServer): HttpClient {
@@ -388,7 +394,6 @@ private fun createOAuthServer(server: TestingOAuthServer): HttpClient {
                     call.response.status(HttpStatusCode.OK)
                 }
             }
-
         }
     }
     val engine = TestApplicationEngine(environment)

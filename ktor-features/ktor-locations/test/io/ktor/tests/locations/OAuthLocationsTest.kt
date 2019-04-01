@@ -28,7 +28,7 @@ class OAuthLocationsTest {
                 oauthAtLocation<A>(client, Unconfined,
                         { OAuthServerSettings.OAuth2ServerSettings("a", "http://oauth-server/auth",
                                 "http://oauth-server/token",
-                                clientId = "test", clientSecret = "secret")},
+                                clientId = "test", clientSecret = "secret") },
                         { _, _ -> B() }
                 )
             }
@@ -60,7 +60,7 @@ class OAuthLocationsTest {
                 oauthAtLocation<A>(client, Unconfined,
                         { OAuthServerSettings.OAuth2ServerSettings("a", "http://oauth-server/auth",
                                 "http://oauth-server/token",
-                                clientId = "test", clientSecret = "secret")},
+                                clientId = "test", clientSecret = "secret") },
                         { _, _ -> "http://localhost/B" }
                 )
             }

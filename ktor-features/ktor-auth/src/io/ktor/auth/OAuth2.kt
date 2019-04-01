@@ -15,9 +15,10 @@ import org.json.simple.*
 import java.io.*
 
 internal suspend fun PipelineContext<Unit, ApplicationCall>.oauth2(
-        client: HttpClient, dispatcher: CoroutineDispatcher,
-        providerLookup: ApplicationCall.() -> OAuthServerSettings?,
-        urlProvider: ApplicationCall.(OAuthServerSettings) -> String
+    client: HttpClient,
+    dispatcher: CoroutineDispatcher,
+    providerLookup: ApplicationCall.() -> OAuthServerSettings?,
+    urlProvider: ApplicationCall.(OAuthServerSettings) -> String
 ) {
     val provider = call.providerLookup()
     if (provider is OAuthServerSettings.OAuth2ServerSettings) {
@@ -54,12 +55,14 @@ internal suspend fun ApplicationCall.redirectAuthenticateOAuth2(settings: OAuthS
             parameters = extraParameters)
 }
 
-internal suspend fun simpleOAuth2Step2(client: HttpClient,
-                                       settings: OAuthServerSettings.OAuth2ServerSettings,
-                                       usedRedirectUrl: String,
-                                       callbackResponse: OAuthCallback.TokenSingle,
-                                       extraParameters: Map<String, String> = emptyMap(),
-                                       configure: HttpRequestBuilder.() -> Unit = {}): OAuthAccessTokenResponse.OAuth2 {
+internal suspend fun simpleOAuth2Step2(
+    client: HttpClient,
+    settings: OAuthServerSettings.OAuth2ServerSettings,
+    usedRedirectUrl: String,
+    callbackResponse: OAuthCallback.TokenSingle,
+    extraParameters: Map<String, String> = emptyMap(),
+    configure: HttpRequestBuilder.() -> Unit = {}
+): OAuthAccessTokenResponse.OAuth2 {
     return simpleOAuth2Step2(
             client,
             settings.requestMethod,
@@ -90,19 +93,21 @@ internal fun optionalParameter(name: String, value: String, condition: (String) 
         if (condition(value)) "${encodeURLQueryComponent(name)}=${encodeURLQueryComponent(value)}"
         else ""
 
-private suspend fun simpleOAuth2Step2(client: HttpClient,
-                                      method: HttpMethod,
-                                      usedRedirectUrl: String?,
-                                      baseUrl: String,
-                                      clientId: String,
-                                      clientSecret: String,
-                                      state: String?,
-                                      code: String?,
-                                      extraParameters: Map<String, String> = emptyMap(),
-                                      configure: HttpRequestBuilder.() -> Unit = {},
-                                      useBasicAuth: Boolean = false,
-                                      stateProvider: OAuth2StateProvider = DefaultOAuth2StateProvider,
-                                      grantType: String = OAuthGrantTypes.AuthorizationCode): OAuthAccessTokenResponse.OAuth2 {
+private suspend fun simpleOAuth2Step2(
+    client: HttpClient,
+    method: HttpMethod,
+    usedRedirectUrl: String?,
+    baseUrl: String,
+    clientId: String,
+    clientSecret: String,
+    state: String?,
+    code: String?,
+    extraParameters: Map<String, String> = emptyMap(),
+    configure: HttpRequestBuilder.() -> Unit = {},
+    useBasicAuth: Boolean = false,
+    stateProvider: OAuth2StateProvider = DefaultOAuth2StateProvider,
+    grantType: String = OAuthGrantTypes.AuthorizationCode
+): OAuthAccessTokenResponse.OAuth2 {
 
     if (state != null) {
         stateProvider.verifyState(state)

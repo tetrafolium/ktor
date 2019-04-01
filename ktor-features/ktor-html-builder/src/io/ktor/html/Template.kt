@@ -53,11 +53,10 @@ class PlaceholderItem<TOuter>(val index: Int, val collection: List<PlaceholderIt
     val last: Boolean get() = index == collection.lastIndex
 }
 
-
 /**
  * Inserts every element of placeholder list
  */
-fun <TOuter, TInner> TOuter.each(items: PlaceholderList<TOuter, TInner>, itemTemplate: TOuter.(PlaceholderItem<TInner>) -> Unit): Unit {
+fun <TOuter, TInner> TOuter.each(items: PlaceholderList<TOuter, TInner>, itemTemplate: TOuter.(PlaceholderItem<TInner>) -> Unit) {
     items.apply(this, itemTemplate)
 }
 
@@ -82,10 +81,10 @@ open class TemplatePlaceholder<TTemplate> {
 
 fun <TTemplate : Template<TOuter>, TOuter> TOuter.insert(template: TTemplate, placeholder: TemplatePlaceholder<TTemplate>) {
     placeholder.apply(template)
-    with (template) { apply() }
+    with(template) { apply() }
 }
 
 fun <TOuter, TTemplate : Template<TOuter>> TOuter.insert(template: TTemplate, build: TTemplate.() -> Unit) {
     template.build()
-    with (template) { apply() }
+    with(template) { apply() }
 }

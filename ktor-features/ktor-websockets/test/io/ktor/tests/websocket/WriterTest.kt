@@ -37,7 +37,6 @@ class WriterTest {
         writer.send(Frame.Close(CloseReason(CloseReason.Codes.NORMAL, "")))
         writer.send(Frame.Text("Yo"))
 
-
         val bytesWritten = out.toByteArray().takeLast(4).joinToString { (it.toInt() and 0xff).toString(16).padStart(2, '0') }
         (writer.outgoing as Job).join()
 

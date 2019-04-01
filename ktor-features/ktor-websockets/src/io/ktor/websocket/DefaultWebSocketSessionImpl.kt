@@ -13,10 +13,10 @@ import kotlin.coroutines.experimental.*
 import kotlin.properties.*
 
 internal class DefaultWebSocketSessionImpl(
-        val raw: WebSocketSession,
-        val engineContext: CoroutineContext,
-        val userContext: CoroutineContext,
-        val pool: ObjectPool<ByteBuffer>
+    val raw: WebSocketSession,
+    val engineContext: CoroutineContext,
+    val userContext: CoroutineContext,
+    val pool: ObjectPool<ByteBuffer>
 ) : DefaultWebSocketSession, WebSocketSession by raw {
 
     private val pinger = AtomicReference<SendChannel<Frame.Pong>?>(null)

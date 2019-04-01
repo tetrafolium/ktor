@@ -9,10 +9,12 @@ import io.ktor.response.*
 import io.ktor.util.*
 import kotlinx.coroutines.experimental.io.*
 
-class FreeMarkerContent(val template: String,
-                        val model: Any?,
-                        val etag: String? = null,
-                        val contentType: ContentType = ContentType.Text.Html.withCharset(Charsets.UTF_8))
+class FreeMarkerContent(
+    val template: String,
+    val model: Any?,
+    val etag: String? = null,
+    val contentType: ContentType = ContentType.Text.Html.withCharset(Charsets.UTF_8)
+)
 
 class FreeMarker(val config: Configuration) {
     companion object Feature : ApplicationFeature<ApplicationCallPipeline, Configuration, FreeMarker> {
@@ -35,10 +37,12 @@ class FreeMarker(val config: Configuration) {
         return FreeMarkerOutgoingContent(config.getTemplate(content.template), content.model, content.etag, content.contentType)
     }
 
-    private class FreeMarkerOutgoingContent(val template: Template,
-                                            val model: Any?,
-                                            etag: String?,
-                                            override val contentType: ContentType) : OutgoingContent.WriteChannelContent() {
+    private class FreeMarkerOutgoingContent(
+        val template: Template,
+        val model: Any?,
+        etag: String?,
+        override val contentType: ContentType
+    ) : OutgoingContent.WriteChannelContent() {
         override suspend fun writeTo(channel: ByteWriteChannel) {
             channel.bufferedWriter(contentType.charset() ?: Charsets.UTF_8).use {
                 template.process(model, it)

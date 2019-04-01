@@ -25,12 +25,14 @@ open class Locations(private val application: Application, private val routeServ
     private class LocationInfoProperty(val name: String, val getter: KProperty1.Getter<*, *>, val isOptional: Boolean)
 
     private data class ResolvedUriInfo(val path: String, val query: List<Pair<String, String>>)
-    private data class LocationInfo(val klass: KClass<*>,
-                                    val parent: LocationInfo?,
-                                    val parentParameter: LocationInfoProperty?,
-                                    val path: String,
-                                    val pathParameters: List<LocationInfoProperty>,
-                                    val queryParameters: List<LocationInfoProperty>)
+    private data class LocationInfo(
+        val klass: KClass<*>,
+        val parent: LocationInfo?,
+        val parentParameter: LocationInfoProperty?,
+        val path: String,
+        val pathParameters: List<LocationInfoProperty>,
+        val queryParameters: List<LocationInfoProperty>
+    )
 
     private fun LocationInfo.create(allParameters: Parameters): Any {
         val objectInstance = klass.objectInstance

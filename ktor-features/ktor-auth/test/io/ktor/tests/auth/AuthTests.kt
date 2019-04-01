@@ -3,7 +3,6 @@ package io.ktor.tests.auth
 import io.ktor.auth.*
 import java.util.*
 import kotlin.test.*
-import org.junit.Test as test
 
 class AuthorizeHeaderParserTest {
     @org.junit.Test fun empty() {
